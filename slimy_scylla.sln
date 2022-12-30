@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -9,6 +9,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenTabletDriver", "OpenTabletDriver", "{09B13DC2-3E38-49D9-91ED-C435530826E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTabletDriver.Plugin", ".modules\OpenTabletDriver\OpenTabletDriver.Plugin\OpenTabletDriver.Plugin.csproj", "{926CADF4-08F8-4092-82D3-FA49830B13F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver", ".modules\opentabletdriver\opentabletdriver\opentabletdriver.csproj", "{15C0B5F6-7066-4696-A20E-9C5419F02CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver.native", ".modules\opentabletdriver\opentabletdriver.Native\opentabletdriver.native.csproj", "{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver.configurations", ".modules\opentabletdriver\opentabletdriver.configurations\opentabletdriver.configurations.csproj", "{2959ABB7-D5EC-4F6F-8F5F-041C30142241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +33,24 @@ Global
 		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15C0B5F6-7066-4696-A20E-9C5419F02CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15C0B5F6-7066-4696-A20E-9C5419F02CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15C0B5F6-7066-4696-A20E-9C5419F02CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15C0B5F6-7066-4696-A20E-9C5419F02CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2959ABB7-D5EC-4F6F-8F5F-041C30142241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2959ABB7-D5EC-4F6F-8F5F-041C30142241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2959ABB7-D5EC-4F6F-8F5F-041C30142241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2959ABB7-D5EC-4F6F-8F5F-041C30142241}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{09B13DC2-3E38-49D9-91ED-C435530826E9} = {E018AA30-76A3-469E-B11D-22B841D82505}
 		{926CADF4-08F8-4092-82D3-FA49830B13F0} = {09B13DC2-3E38-49D9-91ED-C435530826E9}
+		{15C0B5F6-7066-4696-A20E-9C5419F02CD7} = {09B13DC2-3E38-49D9-91ED-C435530826E9}
+		{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0} = {09B13DC2-3E38-49D9-91ED-C435530826E9}
+		{2959ABB7-D5EC-4F6F-8F5F-041C30142241} = {09B13DC2-3E38-49D9-91ED-C435530826E9}
 	EndGlobalSection
 EndGlobal
