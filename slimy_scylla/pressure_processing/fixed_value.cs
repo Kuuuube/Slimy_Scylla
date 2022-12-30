@@ -13,7 +13,7 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
     public override void Consume(IDeviceReport device_report)
     {
         if (device_report is ITabletReport report) {
-            if (report.Pressure <= pressure_deadzone_percent * get_max_pressure()) {
+            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -26,7 +26,7 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Value"), DefaultPropertyValue(0.22), Unit("%")]
+    [Property("Value"), DefaultPropertyValue(0.22)]
     public float value_percent { set; get; }
 
     [Property("Pressure Deadzone"), Unit("%")]

@@ -37,7 +37,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     public override void Consume(IDeviceReport device_report)
     {
         if (device_report is ITabletReport report) {
-            if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent * get_max_pressure()) {
+            if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 last_positions = new List<Vector2>();
                 Emit?.Invoke(device_report);
                 return;
