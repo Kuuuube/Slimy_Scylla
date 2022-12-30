@@ -44,6 +44,19 @@ namespace slimy_scylla
             return default;
         }
 
+        public uint get_max_pressure() {
+            if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
+                return absolute_output_mode.Tablet.Properties.Specifications.Pen.MaxPressure;
+            }
+
+            if (output_mode_type == OutputModeType.relative && relative_output_mode != null) {
+                return relative_output_mode.Tablet.Properties.Specifications.Pen.MaxPressure;
+            }
+
+            try_resolve_output_mode();
+            return default;
+        }
+
         [Resolved]
         public IDriver driver;
         private OutputModeType output_mode_type;
