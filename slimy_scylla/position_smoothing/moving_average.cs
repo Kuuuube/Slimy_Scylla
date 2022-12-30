@@ -9,7 +9,6 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Position Smoothing Moving Average")]
 public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scylla_base
 {
-    private bool emit = true;
     private List<Vector2> last_positions = new List<Vector2>();
     private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
@@ -19,28 +18,26 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
         while (last_positions.Count > amount) {
             last_positions.RemoveAt(0);
         }
-
-        if (last_positions.Count == amount) {
-            Vector2 total = new Vector2();
-            foreach (Vector2 position in last_positions) {
-                total.X += position.X;
-                total.Y += position.Y;
-            }
-
-            report.X = total.X / (float)amount;
-            report.Y = total.Y / (float)amount;
-            return report;
+        while (last_positions.Count < amount) {
+            last_positions.Add(report);
         }
 
-        emit = false;
+        Vector2 total = new Vector2();
+        foreach (Vector2 position in last_positions) {
+            total.X += position.X;
+            total.Y += position.Y;
+        }
+
+        report.X = total.X / (float)last_positions.Count;
+        report.Y = total.Y / (float)last_positions.Count;
         return report;
     }
 
-    public override event Action<IDeviceReport> Emit;
+    public override event Action<IDeviceReport>? Emit;
     public override void Consume(IDeviceReport device_report)
     {
         if (device_report is ITabletReport report) {
-            if (!apply_to_hover && report.Pressure <= pressure_deadzone) {
+            if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent * get_max_pressure()) {
                 last_positions = new List<Vector2>();
                 Emit?.Invoke(device_report);
                 return;
@@ -72,11 +69,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
             device_report = report;
         }
 
-        if (emit) {
-            Emit?.Invoke(device_report);
-        } else {
-            emit = true;
-        }
+        Emit?.Invoke(device_report);
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
@@ -86,8 +79,8 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     [BooleanProperty("Catch Up (pen only)", "")]
     public bool catch_up { set; get; }
 
-    [Property("Pressure Deadzone")]
-    public int pressure_deadzone { set; get; }
+    [Property("Pressure Deadzone"), Unit("%")]
+    public float pressure_deadzone_percent { set; get; }
 
     [BooleanProperty("Apply to Hover", "")]
     public bool apply_to_hover { set; get; }
