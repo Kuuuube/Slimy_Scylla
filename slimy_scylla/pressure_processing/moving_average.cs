@@ -34,8 +34,6 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
     {
         if (device_report is ITabletReport report) {
             if (report.Pressure <= pressure_deadzone_percent * get_max_pressure()) {
-                report.Pressure = last_pressures.Last() / 2;
-                device_report = report;
                 last_pressures = new List<uint>();
                 Emit?.Invoke(device_report);
                 return;
@@ -54,7 +52,4 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
 
     [Property("Pressure Deadzone"), Unit("%")]
     public float pressure_deadzone_percent { set; get; }
-
-    [BooleanProperty("Remove Tail", "")]
-    public bool remove_tail { set; get; }
 }
