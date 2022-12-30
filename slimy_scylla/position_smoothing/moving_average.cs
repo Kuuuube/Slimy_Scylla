@@ -12,6 +12,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     private bool emit = true;
     private List<Vector2> last_positions = new List<Vector2>();
     private Vector2 last_smoothed_position = new Vector2();
+    private uint last_pressure = 0;
 
     private Vector2 moving_average(Vector2 report) {
         last_positions.Add(report);
@@ -59,12 +60,14 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
 
                 if (max_delta < max_lppx) {
                     report.Position = last_smoothed_position;
+                    report.Pressure = last_pressure;
                     device_report = report;
                     Emit?.Invoke(device_report);
                     return;
                 }
                 report.Position = moving_average(report.Position);
                 last_smoothed_position = report.Position;
+                last_pressure = report.Pressure;
             }
             device_report = report;
         }
