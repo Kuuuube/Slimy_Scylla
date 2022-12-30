@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slimy_scylla", "slimy_scylla\slimy_scylla.csproj", "{DD488101-9428-4708-83CF-96451E16F001}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".modules", ".modules", "{E018AA30-76A3-469E-B11D-22B841D82505}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenTabletDriver", "OpenTabletDriver", "{09B13DC2-3E38-49D9-91ED-C435530826E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTabletDriver.Plugin", ".modules\OpenTabletDriver\OpenTabletDriver.Plugin\OpenTabletDriver.Plugin.csproj", "{926CADF4-08F8-4092-82D3-FA49830B13F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD488101-9428-4708-83CF-96451E16F001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD488101-9428-4708-83CF-96451E16F001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD488101-9428-4708-83CF-96451E16F001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD488101-9428-4708-83CF-96451E16F001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{926CADF4-08F8-4092-82D3-FA49830B13F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{09B13DC2-3E38-49D9-91ED-C435530826E9} = {E018AA30-76A3-469E-B11D-22B841D82505}
+		{926CADF4-08F8-4092-82D3-FA49830B13F0} = {09B13DC2-3E38-49D9-91ED-C435530826E9}
+	EndGlobalSection
+EndGlobal
