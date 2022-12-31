@@ -16,8 +16,9 @@ public sealed class slimy_scylla_pressure_processing_sample_and_hold : slimy_scy
     {
         if (device_report is ITabletReport report) {
             samples++;
-            
+
             if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+                report.Pressure = 0;
                 samples = 0;
                 Emit?.Invoke(device_report);
                 return;

@@ -41,6 +41,7 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
                     tail_reports--;
                 }
                 last_pressures = new List<uint>();
+                report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;
             }
