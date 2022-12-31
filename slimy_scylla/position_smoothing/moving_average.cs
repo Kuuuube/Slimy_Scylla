@@ -76,7 +76,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     [Property("Amount"), DefaultPropertyValue(2)]
     public int amount { set; get; }
 
-    [BooleanProperty("Catch Up (pen only)", "")]
+    [BooleanProperty("Catch Up", ""), DefaultPropertyValue(true)]
     public bool catch_up { set; get; }
 
     [Property("Pressure Deadzone"), Unit("%")]
