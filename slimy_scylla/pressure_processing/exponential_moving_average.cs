@@ -14,7 +14,10 @@ public sealed class slimy_scylla_pressure_processing_exponential_moving_average 
     private int tail_reports = 0;
 
     private uint exponential_moving_average(uint report) {
-        report = (uint)((float)report * (1 - amount) + (float)last_pressure * amount);
+        if (last_pressure != 0) {
+            report = (uint)((float)report * (1 - amount) + (float)last_pressure * amount);
+        }
+
         last_pressure = report;
         return report;
     }
