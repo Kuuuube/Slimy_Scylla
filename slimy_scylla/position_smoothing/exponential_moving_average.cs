@@ -38,7 +38,7 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
                 //ignore reports that move less than one pixel
                 float max_lppx = Math.Max(lines_per_pixel().X, lines_per_pixel().Y);
                 float max_delta;
-                if (last_position != null) {
+                if (last_position != new Vector2()) {
                     max_delta = Math.Max(Math.Abs(report.Position.X - last_position.X), Math.Abs(report.Position.Y - last_position.Y));
                 } else {
                     max_delta = Math.Max(report.Position.X, report.Position.Y);
