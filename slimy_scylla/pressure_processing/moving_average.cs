@@ -11,7 +11,7 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
 {
     private List<uint> last_pressures = new List<uint>();
     private Vector2 last_pos = new Vector2();
-    private bool removed_tail = false;
+    private int tail_reports = 0;
 
     private uint moving_average(uint report) {
         last_pressures.Add(report);
@@ -36,9 +36,9 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
     {
         if (device_report is ITabletReport report) {
             if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-                if (remove_tail & !removed_tail) {
+                if (tail_reports > 0) {
                     report.Position = last_pos;
-                    removed_tail = true;
+                    tail_reports--;
                 }
                 last_pressures = new List<uint>();
                 Emit?.Invoke(device_report);
@@ -47,7 +47,7 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
             
             report.Pressure = moving_average(report.Pressure);
             last_pos = report.Position;
-            removed_tail = false;
+            tail_reports = remove_tail_pressure_reports;
             device_report = report;
         }
 
@@ -61,6 +61,6 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
     [Property("Pressure Deadzone"), Unit("%")]
     public float pressure_deadzone_percent { set; get; }
 
-    [BooleanProperty("Remove Tail", "")]
-    public bool remove_tail { set; get; }
+    [Property("Remove Tail Pressure Reports")]
+    public int remove_tail_pressure_reports { set; get; }
 }
