@@ -27,6 +27,7 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
     {
         if (device_report is ITabletReport report) {
             if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+                report.Pressure = 0;
                 last_position = new Vector2();
                 Emit?.Invoke(device_report);
                 return;
