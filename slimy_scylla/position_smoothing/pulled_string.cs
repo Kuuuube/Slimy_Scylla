@@ -27,6 +27,9 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
                 point_on_ellipse = new Vector3(try_point.X, try_point.Y, (float)test_point);
             } else {
                 //overshot
+                if (point_on_ellipse == new Vector3()) {
+                    point_on_ellipse = new Vector3(position, -1);
+                }
                 break;
             }
         }
