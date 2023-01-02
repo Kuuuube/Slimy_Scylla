@@ -13,13 +13,13 @@ public sealed class slimy_scylla_pressure_processing_exponential_moving_average 
     private Vector2 last_pos = new Vector2();
     private int tail_reports = 0;
 
-    private uint exponential_moving_average(uint report) {
+    private uint exponential_moving_average(uint pressure) {
         if (last_pressure != 0) {
-            report = (uint)((float)report * (1 - amount) + (float)last_pressure * amount);
+            pressure = (uint)((float)pressure * (1 - amount) + (float)last_pressure * amount);
         }
 
-        last_pressure = report;
-        return report;
+        last_pressure = pressure;
+        return pressure;
     }
 
     public override event Action<IDeviceReport>? Emit;

@@ -13,22 +13,22 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
     private Vector2 last_pos = new Vector2();
     private int tail_reports = 0;
 
-    private uint moving_average(uint report) {
-        last_pressures.Add(report);
+    private uint moving_average(uint pressure) {
+        last_pressures.Add(pressure);
         while (last_pressures.Count > amount) {
             last_pressures.RemoveAt(0);
         }
         while (last_pressures.Count < amount) {
-            last_pressures.Add(report);
+            last_pressures.Add(pressure);
         }
 
         uint total = 0;
-        foreach (uint pressure in last_pressures) {
+        foreach (uint last_pressure in last_pressures) {
             total += pressure;
         }
 
-        report = total / (uint)last_pressures.Count;
-        return report;
+        pressure = total / (uint)last_pressures.Count;
+        return pressure;
     }
 
     public override event Action<IDeviceReport>? Emit;

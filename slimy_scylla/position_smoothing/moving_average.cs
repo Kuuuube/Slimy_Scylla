@@ -13,24 +13,24 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
 
-    private Vector2 moving_average(Vector2 report) {
-        last_positions.Add(report);
+    private Vector2 moving_average(Vector2 position) {
+        last_positions.Add(position);
         while (last_positions.Count > amount) {
             last_positions.RemoveAt(0);
         }
         while (last_positions.Count < amount) {
-            last_positions.Add(report);
+            last_positions.Add(position);
         }
 
         Vector2 total = new Vector2();
-        foreach (Vector2 position in last_positions) {
-            total.X += position.X;
-            total.Y += position.Y;
+        foreach (Vector2 last_position in last_positions) {
+            total.X += last_position.X;
+            total.Y += last_position.Y;
         }
 
-        report.X = total.X / (float)last_positions.Count;
-        report.Y = total.Y / (float)last_positions.Count;
-        return report;
+        position.X = total.X / (float)last_positions.Count;
+        position.Y = total.Y / (float)last_positions.Count;
+        return position;
     }
 
     public override event Action<IDeviceReport>? Emit;

@@ -12,13 +12,13 @@ public sealed class slimy_scylla_tilt_smoothing_exponential_moving_average : sli
     private Vector2 last_tilt = new Vector2();
     private Vector2 last_pos = new Vector2();
 
-    private Vector2 exponential_moving_average(Vector2 report) {
+    private Vector2 exponential_moving_average(Vector2 tilt) {
         if (last_tilt != new Vector2()) {
-            report = new Vector2(report.X * (1 - amount) + last_tilt.X * amount, report.Y * (1 - amount) + last_tilt.Y * amount);
+            tilt = new Vector2(tilt.X * (1 - amount) + last_tilt.X * amount, tilt.Y * (1 - amount) + last_tilt.Y * amount);
         }
 
-        last_tilt = report;
-        return report;
+        last_tilt = tilt;
+        return tilt;
     }
 
     public override event Action<IDeviceReport>? Emit;

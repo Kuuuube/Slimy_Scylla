@@ -13,13 +13,13 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
     private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
 
-    private Vector2 exponential_moving_average(Vector2 report) {
+    private Vector2 exponential_moving_average(Vector2 position) {
         if (last_position != new Vector2()) {
-            report = new Vector2(report.X * (1 - amount) + last_position.X * amount, report.Y * (1 - amount) + last_position.Y * amount);
+            position = new Vector2(position.X * (1 - amount) + last_position.X * amount, position.Y * (1 - amount) + last_position.Y * amount);
         }
 
-        last_position = report;
-        return report;
+        last_position = position;
+        return position;
     }
 
     public override event Action<IDeviceReport>? Emit;
