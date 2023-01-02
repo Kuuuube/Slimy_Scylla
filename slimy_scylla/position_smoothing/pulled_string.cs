@@ -70,7 +70,11 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
             //ignore reports that move less than string length px
             if ((Math.Pow(delta.X - 0, 2) / Math.Pow(lppx.X * string_length, 2)) + (Math.Pow(delta.Y - 0, 2) / Math.Pow(lppx.Y * string_length, 2)) < 1) {
                 report.Position = last_smoothed_position;
-                report.Pressure = last_pressure;
+                if (never_intercept_pressure_on_off && ((last_pressure > pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) || (last_pressure <= pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure()))) {
+                    //let the pressure through
+                } else {
+                    report.Pressure = last_pressure;
+                }
                 device_report = report;
                 Emit?.Invoke(device_report);
                 return;
@@ -96,4 +100,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1)]
     public int remove_tail_position_reports { set; get; }
+
+    [BooleanProperty("Never Intercept Pressure on/off", "")]
+    public bool never_intercept_pressure_on_off { set; get; }
 }

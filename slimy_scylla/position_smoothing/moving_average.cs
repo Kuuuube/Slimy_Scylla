@@ -58,7 +58,11 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
 
                 if (max_delta < max_lppx) {
                     report.Position = last_smoothed_position;
-                    report.Pressure = last_pressure;
+                    if (never_intercept_pressure_on_off && ((last_pressure > pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) || (last_pressure <= pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure()))) {
+                        //let the pressure through
+                    } else {
+                        report.Pressure = last_pressure;
+                    }
                     device_report = report;
                     Emit?.Invoke(device_report);
                     return;
@@ -85,4 +89,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
 
     [BooleanProperty("Apply to Hover", "")]
     public bool apply_to_hover { set; get; }
+
+    [BooleanProperty("Never Intercept Pressure on/off", "")]
+    public bool never_intercept_pressure_on_off { set; get; }
 }
