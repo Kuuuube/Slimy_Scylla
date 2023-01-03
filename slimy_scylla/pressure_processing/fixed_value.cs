@@ -27,7 +27,7 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Value"), DefaultPropertyValue(0.22)]
+    [Property("Value"), DefaultPropertyValue(0.22f)]
     public float value_percent { set; get; }
 
     [Property("Pressure Deadzone"), Unit("%")]
