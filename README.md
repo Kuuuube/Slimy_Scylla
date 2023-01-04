@@ -12,7 +12,9 @@ Exponential Moving Average
 
 ## Pressure Curve
 
-Pressure Curve
+Pressure Curve:
+
+[Desmos Graph Visualization](https://www.desmos.com/calculator/tz41sbmqc6)
 
 ## Pressure Processing
 
