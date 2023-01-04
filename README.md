@@ -14,7 +14,7 @@ Exponential Moving Average
 
 Pressure Curve:
 
-[Desmos Graph Visualization](https://www.desmos.com/calculator/tz41sbmqc6)
+[Desmos Graph Visualization](https://www.desmos.com/calculator/xo0y9dc9ye)
 
 ## Pressure Processing
 
