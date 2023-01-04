@@ -21,7 +21,7 @@ public sealed class slimy_scylla_pressure_curve : slimy_scylla_base
         }
 
         if (minimum_value_percent > maximum_value_percent) {
-            pressure_double = Math.Clamp(pressure_double, maximum_value_percent / 100, maximum_value_percent / 100);
+            pressure_double = maximum_value_percent / 100;
         } else {
             pressure_double = Math.Clamp(pressure_double, minimum_value_percent / 100, maximum_value_percent / 100);
         }
