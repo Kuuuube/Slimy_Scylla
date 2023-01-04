@@ -13,6 +13,7 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
     private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
     private Vector2 v = new Vector2();
+    private int tail_reports = 0;
 
     private float smooth_step(double a, double b, double x) {
         //emulates lazy nezumi's smoothStep without cubic interpolation
@@ -49,10 +50,17 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
     public override void Consume(IDeviceReport device_report)
     {
         if (device_report is ITabletReport report) {
-            if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 v = new Vector2();
+                if (tail_reports > 0) {
+                    report.Position = last_position * lines_per_pixel();
+                    tail_reports--;
+                }
+                if (tail_reports <= 0) {
+                    last_position = new Vector2();
+                }
+                last_pressure = 0;
                 report.Pressure = 0;
-                last_position = new Vector2();
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -60,6 +68,7 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
             Vector3 position_pressure = weighted(report.Position);
             report.Position = new Vector2(position_pressure.X, position_pressure.Y);
             report.Pressure = (uint)position_pressure.Z;
+            tail_reports = remove_tail_pressure_reports;
             device_report = report;
         }
 
@@ -79,6 +88,6 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
     [Property("Pressure Deadzone"), Unit("%")]
     public float pressure_deadzone_percent { set; get; }
 
-    [BooleanProperty("Apply to Hover", "")]
-    public bool apply_to_hover { set; get; }
+    [Property("Remove Tail Pressure Reports")]
+    public int remove_tail_pressure_reports { set; get; }
 }
