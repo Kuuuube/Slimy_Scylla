@@ -6,8 +6,8 @@ using OpenTabletDriver.Plugin.Output;
 
 namespace slimy_scylla;
 
-[PluginName("Slimy Scylla Scripting Weighted")]
-public sealed class slimy_scylla_scripting_weighted : slimy_scylla_base
+[PluginName("Slimy Scylla Dynamic Weighted")]
+public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
 {
     private Vector2 last_position = new Vector2();
     private Vector2 last_smoothed_position = new Vector2();
