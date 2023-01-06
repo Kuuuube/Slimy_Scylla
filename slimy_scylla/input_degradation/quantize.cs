@@ -33,18 +33,28 @@ public sealed class slimy_scylla_input_degradation_quantize : slimy_scylla_base
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("X Grid"), DefaultPropertyValue(10)]
+    [Property("X Grid"), DefaultPropertyValue(10), ToolTip
+        ("X Grid: Min: 0, Max: 100, Default: 10\n" +
+        "The smallest step in pixels the position can move in the X axis.")]
     public int x_grid { set; get; }
 
-    [Property("Y Grid"), DefaultPropertyValue(20)]
+    [Property("Y Grid"), DefaultPropertyValue(20), ToolTip
+        ("Y Grid: Min: 0, Max: 100, Default: 20\n" +
+        "The smallest step in pixels the position can move in the Y axis.")]
     public int y_grid { set; get; }
 
-    [Property("Scale"), DefaultPropertyValue(1f)]
+    [Property("Scale"), DefaultPropertyValue(1f), ToolTip
+        ("Scale: Min: 0.00, Max: 2.00, Default: 1.00\n" +
+        "Multiplier for the size of the grid in both axes.")]
     public float scale { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [BooleanProperty("Apply to Hover", "")]
+    [BooleanProperty("Apply to Hover", ""), ToolTip
+        ("Apply to Hover: Min: False, Max: True, Default: False\n" +
+        "When true, the filter is applied while hovering. When false, filter is turned off while hovering.")]
     public bool apply_to_hover { set; get; }
 }

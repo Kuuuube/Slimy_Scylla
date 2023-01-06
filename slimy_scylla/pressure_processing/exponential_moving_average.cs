@@ -47,12 +47,19 @@ public sealed class slimy_scylla_pressure_processing_exponential_moving_average 
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(0.1f)]
+    [Property("Amount"), DefaultPropertyValue(0.1f), ToolTip
+        ("Amount: Min: 0.00, Max: 1.00, Default: 0.1\n" +
+        "Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.")]
     public float amount { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [Property("Remove Tail Pressure Reports")]
+    [Property("Remove Tail Pressure Reports"), ToolTip
+        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 0\n" +
+        "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
+        "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]
     public int remove_tail_pressure_reports { set; get; }
 }

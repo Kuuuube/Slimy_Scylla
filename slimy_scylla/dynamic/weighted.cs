@@ -76,18 +76,30 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Drag"), DefaultPropertyValue(0.2f)]
+    [Property("Drag"), DefaultPropertyValue(0.2f), ToolTip
+        ("Drag: Min: 0.10, Max: 0.90, Default: 0.20\n" +
+        "Adds drag to the position movement.")]
     public float drag { set; get; }
 
-    [Property("Mass"), DefaultPropertyValue(31.25f)]
+    [Property("Mass"), DefaultPropertyValue(31.25f), ToolTip
+        ("Mass: Min: 0.00, Max: 50.00, Default: 31.25\n" +
+        "Increases or decreases the feeling of inertia in position movement.")]
     public float mass { set; get; }
 
-    [Property("Max Pressure Speed"), DefaultPropertyValue(20f)]
+    [Property("Max Pressure Speed"), DefaultPropertyValue(20f), ToolTip
+        ("Max Pressure Speed: Min: 1.00, Max: 50.00, Default: 20.00\n" +
+        "The speed at which maximum pressure will be sent.")]
     public float max_pressure_speed { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [Property("Remove Tail Pressure Reports")]
+    [Property("Remove Tail Pressure Reports"), ToolTip
+        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +
+        "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
+        "This may cause lines to not taper properly if you release while moving quickly. Keep your pen down for a second after ending a line to get a clean tapered end.\n" +
+        "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]
     public int remove_tail_pressure_reports { set; get; }
 }

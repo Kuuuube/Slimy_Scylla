@@ -90,18 +90,28 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Pressure Noise Amount"), DefaultPropertyValue(0.05f)]
+    [Property("Pressure Noise Amount"), DefaultPropertyValue(0.05f), ToolTip
+        ("Pressure Noise Amount: Min: 0.00, Max: 0.50, Default: 0.05\n" +
+        "The variability in pressure per report. It is recommended to keep this value very low.")]
     public float pressure_noise_amount { set; get; }
 
-    [Property("Pressure Noise Period"), DefaultPropertyValue(10f)]
+    [Property("Pressure Noise Period"), DefaultPropertyValue(10f), ToolTip
+        ("Pressure Noise Period: Min: 0.01, Max: 50.00, Default: 10.00\n" +
+        "The variability in pressure over time.")]
     public float pressure_noise_period { set; get; }
 
-    [Property("Position Noise Amount"), DefaultPropertyValue(7f)]
+    [Property("Position Noise Amount"), DefaultPropertyValue(7f), ToolTip
+        ("Position Noise Amount: Min: 0.01, Max: 40.00, Default: 7.00\n" +
+        "The variability in position per report.")]
     public float position_noise_amount { set; get; }
 
-    [Property("Position Noise Period"), DefaultPropertyValue(15f)]
+    [Property("Position Noise Period"), DefaultPropertyValue(15f), ToolTip
+        ("Position Noise Period: Min: 0.00, Max: 10.00, Default: 15.00\n" +
+        "The variability in position over time.")]
     public float position_noise_period { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 }

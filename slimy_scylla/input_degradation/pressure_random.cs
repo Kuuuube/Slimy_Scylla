@@ -41,12 +41,18 @@ public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scyll
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(0.1f)]
+    [Property("Amount"), DefaultPropertyValue(0.1f), ToolTip
+        ("Amount: Min: 0.00, Max: 1.00, Default: 0.10\n" +
+        "The amount of pressure change added or subtracted to the current pressure normalized between 0 and 1.")]
     public float amount { set; get; }
 
-    [BooleanProperty("Completely Random Pressure", "")]
+    [BooleanProperty("Completely Random Pressure", ""), ToolTip
+        ("Completely Random Pressure: Min: False, Max: True, Default: False\n" +
+        "When true, ignores the current pressure and apply a completely randomized value.")]
     public bool completely_random_pressure { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 }

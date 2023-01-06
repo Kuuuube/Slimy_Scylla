@@ -67,18 +67,30 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(0.1f)]
+    [Property("Amount"), DefaultPropertyValue(0.1f), ToolTip
+        ("Amount: Min: 0.00, Max: 1.00, Default: 0.10\n" +
+        "Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.")]
     public float amount { set; get; }
 
-    [BooleanProperty("Catch Up", ""), DefaultPropertyValue(true)]
+    [BooleanProperty("Catch Up", ""), DefaultPropertyValue(true), ToolTip
+        ("Catch Up: Min: False, Max: True, Default: True\n" +
+        "When true, the current position is always updated. When false, the current position is held until it moves at least one pixel.")]
     public bool catch_up { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [BooleanProperty("Apply to Hover", "")]
+    [BooleanProperty("Apply to Hover", ""), ToolTip
+        ("Apply to Hover: Min: False, Max: True, Default: False\n" +
+        "When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.")]
     public bool apply_to_hover { set; get; }
 
-    [BooleanProperty("Never Intercept Pressure on/off", "")]
+    [BooleanProperty("Never Intercept Pressure on/off", ""), ToolTip
+        ("Never Intercept Pressure on/off: Min: False, Max: True, Default: False\n" +
+        "When true, while Catch Up is true, pressure on/off will send even if the position has moved less than one pixel.\n" +
+        "When false, while Catch Up is true, pressure will wait to send until movement is detected.\n" +
+        "This setting does not apply when Catch Up is false.")]
     public bool never_intercept_pressure_on_off { set; get; }
 }

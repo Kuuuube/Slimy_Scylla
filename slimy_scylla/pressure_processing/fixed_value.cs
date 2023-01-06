@@ -27,9 +27,13 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Value"), DefaultPropertyValue(0.22f)]
+    [Property("Value"), DefaultPropertyValue(0.22f), ToolTip
+        ("Value: Min: 0.00, Max: 1.00, Default: 0.22\n" +
+        "The normalized value between 0 and 1 to set pressure to.")]
     public float value_percent { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 }

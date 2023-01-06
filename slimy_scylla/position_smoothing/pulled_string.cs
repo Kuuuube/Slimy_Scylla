@@ -92,18 +92,31 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("String Length"), DefaultPropertyValue(35), Unit("px")]
+    [Property("String Length"), DefaultPropertyValue(35), Unit("px"), ToolTip
+        ("String Length: Min: 0, Max: 200, Default: 35\n" +
+        "The radius of the circular deadzone in pixels.")]
     public int string_length { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [BooleanProperty("Apply to Hover", "")]
+    [BooleanProperty("Apply to Hover", ""), ToolTip
+        ("Apply to Hover: Min: False, Max: True, Default: False\n" +
+        "When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.")]
     public bool apply_to_hover { set; get; }
 
-    [Property("Remove Tail Position Reports"), DefaultPropertyValue(1)]
+    [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
+        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +
+        "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
+        "Using this on Pulled String is important as you may commonly finish lines at a different position than the real position.\n" +
+        "A sudden position change when transitioning to hover can cause unintended lines.\n" +
+        "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]
     public int remove_tail_position_reports { set; get; }
 
-    [BooleanProperty("Never Intercept Pressure on/off", "")]
+    [BooleanProperty("Never Intercept Pressure on/off", ""), ToolTip
+        ("Never Intercept Pressure on/off: Min: False, Max: True, Default: False\n" +
+        "When true, pressure on/off will send even if the position has moved less than one pixel. When false, pressure will wait to send until movement is detected.")]
     public bool never_intercept_pressure_on_off { set; get; }
 }

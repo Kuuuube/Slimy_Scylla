@@ -47,21 +47,33 @@ public sealed class slimy_scylla_pressure_curve : slimy_scylla_base
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Gain"), DefaultPropertyValue(1f)]
+    [Property("Gain"), DefaultPropertyValue(1f), ToolTip
+        ("Gain: Min: 1.00, Max: 5.00, Default: 1.00\n" +
+        "The steepness of the pressure curve.")]
     public float gain { set; get; }
 
-    [Property("Softness"), DefaultPropertyValue(0f)]
+    [Property("Softness"), DefaultPropertyValue(0f), ToolTip
+        ("Softness: Min: -0.90, Max: 0.90, Default: 0.00\n" +
+        "The depth and direction of the exponential curve.")]
     public float softness { set; get; }
 
-    [Property("Minimum Value"), DefaultPropertyValue(0f), Unit("%")]
+    [Property("Minimum Value"), DefaultPropertyValue(0f), Unit("%"), ToolTip
+        ("Minimum Value: Min: 0%, Max: 100%, Default: 0%\n" +
+        "The minimum output pressure.")]
     public float minimum_value_percent { set; get; }
 
-    [Property("Maximum Value"), DefaultPropertyValue(100f), Unit("%")]
+    [Property("Maximum Value"), DefaultPropertyValue(100f), Unit("%"), ToolTip
+        ("Maximum Value: Min: 0%, Max: 100%, Default: 100%\n" +
+        "The maximum output Pressure.")]
     public float maximum_value_percent { set; get; }
 
-    [BooleanProperty("Invert", "")]
+    [BooleanProperty("Invert", ""), ToolTip
+        ("Invert: Min: False, Max: True, Default: False\n" +
+        "Flips the pressure curve on the y-axis.")]
     public bool invert { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 }

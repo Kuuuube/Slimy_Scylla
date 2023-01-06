@@ -39,9 +39,13 @@ public sealed class slimy_scylla_pressure_processing_sample_and_hold : slimy_scy
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Sample Number"), DefaultPropertyValue(15)]
+    [Property("Sample Number"), DefaultPropertyValue(15), ToolTip
+        ("Sample Number: Min: 1, Max: 100, Default: 15\n" +
+        "The number of samples before locking pressure.")]
     public int sample_number { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 }

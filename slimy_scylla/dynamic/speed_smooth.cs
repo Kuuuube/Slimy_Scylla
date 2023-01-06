@@ -82,24 +82,39 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Min Smooth Speed"), DefaultPropertyValue(0)]
+    [Property("Min Smooth Speed"), DefaultPropertyValue(0), ToolTip
+        ("Min Smooth Speed: Min: 0, Max: 1000, Default: 0\n" +
+        "The minimum speed where smoothing is applied.")]
     public int min_smooth_speed { set; get; }
 
-    [Property("Max Smooth Speed"), DefaultPropertyValue(55)]
+    [Property("Max Smooth Speed"), DefaultPropertyValue(55), ToolTip
+        ("Max Smooth Speed: Min: 0, Max: 1000, Default: 55\n" +
+        "The maximum speed where smoothing is applied.")]
     public int max_smooth_speed { set; get; }
 
-    [Property("Smooth Amount"), DefaultPropertyValue(0.98f)]
+    [Property("Smooth Amount"), DefaultPropertyValue(0.98f), ToolTip
+        ("Smooth Amount: Min: 0.00, Max: 0.98, Default: 0.98\n" +
+        "The amount of smoothing to apply.")]
     public float smooth_amount { set; get; }
 
-    [Property("Inertia Accel"), DefaultPropertyValue(0.5f)]
+    [Property("Inertia Accel"), DefaultPropertyValue(0.5f), ToolTip
+        ("Inertia Accel: Min: 0.00, Max: 0.95, Default: 0.50\n" +
+        "Scales the amount of inertia present when accelerating in speed.")]
     public float inertia_accel { set; get; }
 
-    [Property("Inertia Decel"), DefaultPropertyValue(0.85f)]
+    [Property("Inertia Decel"), DefaultPropertyValue(0.85f), ToolTip
+        ("Inertia Decel: Min: 0.00, Max: 0.95, Default: 0.85\n" +
+        "Scales the amount of inertia present when decelerating in speed.")]
     public float inertia_decel { set; get; }
 
-    [Property("Pressure Deadzone"), Unit("%")]
+    [Property("Pressure Deadzone"), Unit("%"), ToolTip
+        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
+        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [Property("Remove Tail Pressure Reports")]
+    [Property("Remove Tail Pressure Reports"), ToolTip
+        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +
+        "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
+        "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]
     public int remove_tail_pressure_reports { set; get; }
 }
