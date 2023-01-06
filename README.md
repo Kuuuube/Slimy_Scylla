@@ -2,46 +2,24 @@
 
 Provides popular input processing methods for drawing tablets.
 
-## Position Smoothing
+## Quick Start Guide
 
-Pulled String
+- [Recommended Settings for New Users](./docs/recommended_settings/recommended_settings.md)
 
-Moving Average
+## Input Processing Methods
 
-Exponential Moving Average
+### [Position Smoothing](./docs/position_smoothing/position_smoothing.md)
 
-## Pressure Curve
-
-Pressure Curve:
+### Pressure Curve
 
 [Desmos Graph Visualization](https://www.desmos.com/calculator/xo0y9dc9ye)
 
 [Desmos Graph Formulas Backup](./docs/pressure_curve/desmos_graph_formulas.md)
 
-## Pressure Processing
+### Pressure Processing
 
-Fixed Value
+### Tilt Smoothing
 
-Sample and Hold
+### Dynamic
 
-Moving Average
-
-Exponential Moving Average
-
-## Tilt Smoothing
-
-Exponential Moving Average
-
-## Dynamic
-
-Weighted
-
-Speed Smooth
-
-## Input Degredation
-
-Jitter
-
-Pressure Random
-
-Quantize
+### Input Degredation
