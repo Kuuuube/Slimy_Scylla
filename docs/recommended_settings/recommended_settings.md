@@ -1,6 +1,6 @@
 # Recommended Settings
 
-Various sets of settings and their typical use cases. Listed in order of general usefulness.
+Various sets of settings and their functions. Listed in order of general usefulness.
 
 ## Subtle Smoothing
 

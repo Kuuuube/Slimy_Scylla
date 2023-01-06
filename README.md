@@ -8,18 +8,16 @@ Provides popular input processing methods for drawing tablets.
 
 ## Input Processing Methods
 
-### [Position Smoothing](./docs/position_smoothing/position_smoothing.md)
+Documentation on all input processing methods, including a reasonable range for all settings. Min and max values are not enforced and are only suggestions.
 
-### Pressure Curve
+[Position Smoothing](./docs/position_smoothing/position_smoothing.md)
 
-[Desmos Graph Visualization](https://www.desmos.com/calculator/xo0y9dc9ye)
+[Pressure Curve](./docs/pressure_curve/pressure_curve.md)
 
-[Desmos Graph Formulas Backup](./docs/pressure_curve/desmos_graph_formulas.md)
+[Pressure Processing](./docs/pressure_processing/pressure_processing.md)
 
-### Pressure Processing
+[Tilt Smoothing](./docs/tilt_smoothing/tilt_smoothing.md)
 
-### Tilt Smoothing
+[Dynamic](./docs/dynamic/dynamic.md)
 
-### Dynamic
-
-### Input Degredation
+[Input Degradation](./docs/input_degradation/input_degradation.md)
