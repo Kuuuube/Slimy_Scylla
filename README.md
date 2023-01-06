@@ -32,6 +32,16 @@ Exponential Moving Average
 
 Exponential Moving Average
 
-## Scripting
+## Dynamic
 
 Weighted
+
+Speed Smooth
+
+## Input Degredation
+
+Jitter
+
+Pressure Random
+
+Quantize
