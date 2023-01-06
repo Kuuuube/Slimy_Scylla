@@ -35,14 +35,16 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
 
         Vector2 d = new Vector2(position.X - last_position.X, position.Y - last_position.Y);
         float accel_decel;
-        float s = (float)Math.Sqrt((position.X-last_position.X)*(position.X-last_position.X)+(position.Y-last_position.Y)*(position.Y-last_position.Y));
+        float s = (float)Math.Sqrt((position.X-last_position.X) * (position.X-last_position.X) + (position.Y-last_position.Y) * (position.Y-last_position.Y));
         if (s > ss) {
             accel_decel = inertia_accel;
         } else {
             accel_decel = inertia_decel;
         }
         ss = mix(s, ss, accel_decel);
-        float g = 1 - smooth_amount * smooth_step(min_smooth_speed, max_smooth_speed, ss);
+        //`Math.Pow(..., 5)` is a workaround to attempt to scale g reasonably. Purely linear scaling does not function properly.
+        //using max_smooth_speed as the min value instead of min_smooth_speed makes smooth_step() return 0 when a value is above max_smooth_speed instead of 1
+        float g = (float)Math.Pow((1 - smooth_amount * smooth_step(max_smooth_speed, min_smooth_speed, ss)), 5);
         position = new Vector2(last_position.X + d.X * g, last_position.Y + d.Y * g);
 
         last_position = new Vector2(position.X, position.Y);
@@ -80,16 +82,16 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Min Smooth Speed"), DefaultPropertyValue(55)]
+    [Property("Min Smooth Speed"), DefaultPropertyValue(0)]
     public int min_smooth_speed { set; get; }
 
-    [Property("Max Smooth Speed"), DefaultPropertyValue(0)]
+    [Property("Max Smooth Speed"), DefaultPropertyValue(55)]
     public int max_smooth_speed { set; get; }
 
     [Property("Smooth Amount"), DefaultPropertyValue(0.98f)]
     public float smooth_amount { set; get; }
 
-    [Property("Inertial Accel"), DefaultPropertyValue(0.5f)]
+    [Property("Inertia Accel"), DefaultPropertyValue(0.5f)]
     public float inertia_accel { set; get; }
 
     [Property("Inertia Decel"), DefaultPropertyValue(0.85f)]
