@@ -6,8 +6,8 @@ using OpenTabletDriver.Plugin.Output;
 
 namespace slimy_scylla;
 
-[PluginName("Slimy Scylla Input Degredation Quantize")]
-public sealed class slimy_scylla_input_degredation_quantize : slimy_scylla_base
+[PluginName("Slimy Scylla Input Degradation Quantize")]
+public sealed class slimy_scylla_input_degradation_quantize : slimy_scylla_base
 {
     private Vector2 quantize(Vector2 position) {
         Vector2 grid_size = new Vector2(scale * x_grid * lines_per_pixel().X, scale * y_grid * lines_per_pixel().Y);

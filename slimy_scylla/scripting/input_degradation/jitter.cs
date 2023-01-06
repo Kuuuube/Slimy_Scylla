@@ -6,8 +6,8 @@ using OpenTabletDriver.Plugin.Output;
 
 namespace slimy_scylla;
 
-[PluginName("Slimy Scylla Input Degredation Jitter")]
-public sealed class slimy_scylla_input_degredation_jitter : slimy_scylla_base
+[PluginName("Slimy Scylla Input Degradation Jitter")]
+public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
 {
     private int seed = 0;
     private Vector2 start_point = new Vector2();

@@ -6,8 +6,8 @@ using OpenTabletDriver.Plugin.Output;
 
 namespace slimy_scylla;
 
-[PluginName("Slimy Scylla Input Degredation Pressure Random")]
-public sealed class slimy_scylla_input_degredation_pressure_random : slimy_scylla_base
+[PluginName("Slimy Scylla Input Degradation Pressure Random")]
+public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scylla_base
 {
     private uint pressure_random(uint pressure) {
         float random = (float)new Random().NextDouble();
