@@ -57,6 +57,19 @@ namespace slimy_scylla
             return default;
         }
 
+        public Vector2 get_max_coords() {
+            if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
+                return new Vector2(absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX, absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY);
+            }
+
+            if (output_mode_type == OutputModeType.relative && relative_output_mode != null) {
+                return new Vector2(relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX, relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY);
+            }
+
+            try_resolve_output_mode();
+            return default;
+        }
+
         [Resolved]
         public IDriver driver;
         private OutputModeType output_mode_type;
