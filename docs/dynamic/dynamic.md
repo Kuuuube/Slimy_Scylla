@@ -51,3 +51,13 @@ Scales the amount of inertia present when accelerating in speed.
 **Inertia Decel:** Min: 0.00, Max: 0.95, Default: 0.85
 
 Scales the amount of inertia present when decelerating in speed.
+
+**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
+
+Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
+
+**Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
+
+Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails".
+
+Usually setting this to 1 is enough for it function properly. Only increase the value if required.

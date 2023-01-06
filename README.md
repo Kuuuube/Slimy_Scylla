@@ -4,7 +4,7 @@ Provides popular input processing methods for drawing tablets.
 
 ## Quick Start Guide
 
-- [Recommended Settings for New Users](./docs/recommended_settings/recommended_settings.md)
+[Recommended Settings for New Users](./docs/recommended_settings/recommended_settings.md)
 
 ## Input Processing Methods
 
