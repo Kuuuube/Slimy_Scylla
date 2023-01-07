@@ -10,7 +10,6 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla_base
 {
     private Vector2 last_position = new Vector2();
-    private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
     private bool first_report = true;
     private int tail_reports = 0;
@@ -61,7 +60,6 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
 
             if (first_report) {
                 last_position = report.Position;
-                last_smoothed_position = report.Position;
                 first_report = false;
                 Emit?.Invoke(device_report);
                 return;
@@ -72,7 +70,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
 
             //ignore reports that move less than string length px
             if ((Math.Pow(delta.X - 0, 2) / Math.Pow(lppx.X * string_length, 2)) + (Math.Pow(delta.Y - 0, 2) / Math.Pow(lppx.Y * string_length, 2)) < 1) {
-                report.Position = last_smoothed_position;
+                report.Position = last_position;
                 if (never_intercept_pressure_on_off && ((last_pressure > pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) || (last_pressure <= pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure()))) {
                     //let the pressure through
                 } else {
@@ -83,7 +81,6 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
                 return;
             }
             report.Position = pulled_string(report.Position, new Vector2(lppx.X * string_length, lppx.Y * string_length), delta);
-            last_smoothed_position = report.Position;
             last_pressure = report.Pressure;
             device_report = report;
         }

@@ -10,7 +10,6 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
 {
     private Vector2 last_position = new Vector2();
-    private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
     private Vector2 v = new Vector2();
     private int tail_reports = 0;
