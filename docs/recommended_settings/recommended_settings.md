@@ -13,6 +13,7 @@ Amount: 7
 Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Apply to Hover: False
+Remove Tail Position Reports: 1
 Never Intercept Pressure on/off: False
 ```
 
@@ -35,6 +36,7 @@ Amount: 30
 Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Apply to Hover: False
+Remove Tail Position Reports: 1
 Never Intercept Pressure on/off: False
 ```
 
@@ -79,6 +81,7 @@ Amount: 10
 Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Apply to Hover: False
+Remove Tail Position Reports: 1
 Never Intercept Pressure on/off: False
 ```
 
