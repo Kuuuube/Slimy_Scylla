@@ -111,7 +111,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     public bool apply_to_hover { set; get; }
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
-        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +
+        ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +
         "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
         "A sudden position change when transitioning to hover can cause unintended lines.\n" +
         "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]

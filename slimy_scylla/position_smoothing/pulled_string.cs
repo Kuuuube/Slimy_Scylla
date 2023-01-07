@@ -105,7 +105,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
     public bool apply_to_hover { set; get; }
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
-        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +
+        ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +
         "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
         "Using this on Pulled String is important as you may commonly finish lines at a different position than the real position.\n" +
         "A sudden position change when transitioning to hover can cause unintended lines.\n" +
