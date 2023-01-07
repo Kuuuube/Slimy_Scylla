@@ -10,8 +10,8 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_position_smoothing_exponential_moving_average : slimy_scylla_base
 {
     private Vector2 last_position = new Vector2();
-    private Vector2 last_smoothed_position = new Vector2();
     private uint last_pressure = 0;
+    private int tail_reports = 0;
 
     private Vector2 exponential_moving_average(Vector2 position) {
         if (last_position != new Vector2()) {
@@ -28,10 +28,18 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
         if (device_report is ITabletReport report) {
             if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 report.Pressure = 0;
-                last_position = new Vector2();
+                if (tail_reports > 0) {
+                    report.Position = last_position;
+                    tail_reports--;
+                }
+                if (tail_reports <= 0) {
+                    last_position = new Vector2();
+                }
                 Emit?.Invoke(device_report);
                 return;
             }
+
+            tail_reports = remove_tail_position_reports;
 
             if (catch_up) {
                 report.Position = exponential_moving_average(report.Position);
@@ -46,7 +54,7 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
                 }
 
                 if (max_delta < max_lppx) {
-                    report.Position = last_smoothed_position;
+                    report.Position = last_position;
                     if (never_intercept_pressure_on_off && ((last_pressure > pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) || (last_pressure <= pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure()))) {
                         //let the pressure through
                     } else {
@@ -57,7 +65,6 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
                     return;
                 }
                 report.Position = exponential_moving_average(report.Position);
-                last_smoothed_position = report.Position;
                 last_pressure = report.Pressure;
             }
             device_report = report;
@@ -86,6 +93,13 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
         ("Apply to Hover: Min: False, Max: True, Default: False\n" +
         "When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.")]
     public bool apply_to_hover { set; get; }
+
+    [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
+        ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +
+        "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
+        "A sudden position change when transitioning to hover can cause unintended lines.\n" +
+        "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]
+    public int remove_tail_position_reports { set; get; }
 
     [BooleanProperty("Never Intercept Pressure on/off", ""), ToolTip
         ("Never Intercept Pressure on/off: Min: False, Max: True, Default: False\n" +
