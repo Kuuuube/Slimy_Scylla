@@ -74,8 +74,8 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(0.1f), ToolTip
-        ("Amount: Min: 0.00, Max: 1.00, Default: 0.10\n" +
+    [Property("Amount"), DefaultPropertyValue(0.7f), ToolTip
+        ("Amount: Min: 0.00, Max: 1.00, Default: 0.70\n" +
         "Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.")]
     public float amount { set; get; }
 

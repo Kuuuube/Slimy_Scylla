@@ -90,7 +90,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(2), ToolTip
+    [Property("Amount"), DefaultPropertyValue(10), ToolTip
         ("Amount: Min: 2, Max: 200, Default: 2\n" +
         "The number of reports to average. The higher the value, the higher the smoothing.")]
     public int amount { set; get; }

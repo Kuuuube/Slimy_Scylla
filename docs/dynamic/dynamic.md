@@ -20,7 +20,7 @@ The speed at which maximum pressure will be sent.
 
 Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
-**Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
+**Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails".
 
@@ -56,7 +56,7 @@ Scales the amount of inertia present when decelerating in speed.
 
 Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
-**Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
+**Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails".
 
