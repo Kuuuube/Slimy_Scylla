@@ -10,7 +10,6 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_tilt_smoothing_exponential_moving_average : slimy_scylla_base
 {
     private Vector2 last_tilt = new Vector2();
-    private Vector2 last_pos = new Vector2();
 
     private Vector2 exponential_moving_average(Vector2 tilt) {
         if (last_tilt != new Vector2()) {
