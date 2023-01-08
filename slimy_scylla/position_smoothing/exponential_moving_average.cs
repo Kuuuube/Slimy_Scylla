@@ -14,8 +14,12 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
     private int tail_reports = 0;
 
     private Vector2 exponential_moving_average(Vector2 position) {
+        //scale the smoothing amount by x^(0.02/x) to make the difference between different settings feels better
+        //the perceptible difference in smoothing between settings when using an unscaled linear smoothing amount is not linear
+        //when scaling exponentially, users should feel the difference between, for example, 0.2 and 0.4 or 0.6 and 0.8 much better
+        float scaled_amount = (float)Math.Pow(amount, 0.02 / amount);
         if (last_position != new Vector2()) {
-            position = new Vector2(position.X * (1 - amount) + last_position.X * amount, position.Y * (1 - amount) + last_position.Y * amount);
+            position = new Vector2(position.X * (1 - scaled_amount) + last_position.X * scaled_amount, position.Y * (1 - scaled_amount) + last_position.Y * scaled_amount);
         }
 
         last_position = position;
@@ -74,8 +78,8 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(0.7f), ToolTip
-        ("Amount: Min: 0.00, Max: 1.00, Default: 0.70\n" +
+    [Property("Amount"), DefaultPropertyValue(0.1f), ToolTip
+        ("Amount: Min: 0.00, Max: 1.00, Default: 0.10\n" +
         "Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.")]
     public float amount { set; get; }
 

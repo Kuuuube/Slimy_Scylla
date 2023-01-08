@@ -58,7 +58,7 @@ Usually setting this to 1 is enough for it function properly. Only increase the 
 
 Reacts quicker to changes than Moving Average while retaining smoothness.
 
-**Amount:** Min: 0.00, Max: 1.00, Default: 0.70
+**Amount:** Min: 0.00, Max: 1.00, Default: 0.10
 
 Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.
 
