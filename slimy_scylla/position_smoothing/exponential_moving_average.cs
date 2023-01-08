@@ -10,6 +10,7 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_position_smoothing_exponential_moving_average : slimy_scylla_base
 {
     private Vector2 last_position = new Vector2();
+    private Vector2 last_raw_position = new Vector2();
     private uint last_pressure = 0;
     private int tail_reports = 0;
 
@@ -38,6 +39,7 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
                 }
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
+                    last_raw_position = new Vector2();
                 }
                 Emit?.Invoke(device_report);
                 return;
@@ -51,8 +53,8 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
                 //ignore reports that move less than one pixel
                 float max_lppx = Math.Max(lines_per_pixel().X, lines_per_pixel().Y);
                 float max_delta;
-                if (last_position != new Vector2()) {
-                    max_delta = Math.Max(Math.Abs(report.Position.X - last_position.X), Math.Abs(report.Position.Y - last_position.Y));
+                if (last_raw_position != new Vector2()) {
+                    max_delta = Math.Max(Math.Abs(report.Position.X - last_raw_position.X), Math.Abs(report.Position.Y - last_raw_position.Y));
                 } else {
                     max_delta = Math.Max(report.Position.X, report.Position.Y);
                 }
@@ -68,6 +70,7 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
                     Emit?.Invoke(device_report);
                     return;
                 }
+                last_raw_position = report.Position;
                 report.Position = exponential_moving_average(report.Position);
                 last_pressure = report.Pressure;
             }
