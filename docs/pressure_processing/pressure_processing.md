@@ -4,9 +4,9 @@
 
 Sets the pressure to a constant value while the pen is pressed.
 
-**Value:** Min: 0.00, Max: 1.00, Default: 0.22
+**Value:** Min: 0%, Max: 100%, Default: 22%
 
-The normalized value between 0 and 1 to set pressure to.
+The pressure percent to set pressure to.
 
 **Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
 

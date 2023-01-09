@@ -26,7 +26,7 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
                 return;
             }
 
-            report.Pressure = (uint)(value_percent * get_max_pressure());
+            report.Pressure = (uint)((value_percent / 100) * get_max_pressure());
             last_pos = report.Position;
             tail_reports = remove_tail_pressure_reports;
             device_report = report;
@@ -36,9 +36,9 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Value"), DefaultPropertyValue(0.22f), ToolTip
-        ("Value: Min: 0.00, Max: 1.00, Default: 0.22\n" +
-        "The normalized value between 0 and 1 to set pressure to.")]
+    [Property("Value"), DefaultPropertyValue(22f), Unit("%"), ToolTip
+        ("Value: Min: 0%, Max: 100%, Default: 22%\n" +
+        "The pressure percent to set pressure to.")]
     public float value_percent { set; get; }
 
     [Property("Pressure Deadzone"), Unit("%"), ToolTip
