@@ -28,9 +28,9 @@ Adds a pressure deadzone at the set pressure percent. Match this value to your T
 
 Randomizes pressure based on settings.
 
-**Amount:** Min: 0.00, Max: 1.00, Default: 0.10
+**Amount:** Min: 0%, Max: 100%, Default: 10%
 
-The amount of pressure change added or subtracted to the current pressure normalized between 0 and 1.
+The maximum amount of pressure change added or subtracted to the current pressure percent.
 
 **Completely Random Pressure:** Min: False, Max: True, Default: False
 

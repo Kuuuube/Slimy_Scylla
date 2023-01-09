@@ -14,7 +14,7 @@ public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scyll
         if (completely_random_pressure) {
             pressure = (uint)(random * get_max_pressure());
         } else {
-            pressure = (uint)(pressure + pressure * amount * (random * 2 - 1));
+            pressure = (uint)(pressure + pressure * (amount_percent / 100) * (random * 2 - 1));
         }
 
         if (pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
@@ -41,10 +41,10 @@ public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scyll
     }
     public override PipelinePosition Position => PipelinePosition.PreTransform;
 
-    [Property("Amount"), DefaultPropertyValue(0.1f), ToolTip
-        ("Amount: Min: 0.00, Max: 1.00, Default: 0.10\n" +
-        "The amount of pressure change added or subtracted to the current pressure normalized between 0 and 1.")]
-    public float amount { set; get; }
+    [Property("Amount"), DefaultPropertyValue(10f), Unit("%"), ToolTip
+        ("Amount: Min: 0%, Max: 100%, Default: 10%\n" +
+        "The maximum amount of pressure change added or subtracted to the current pressure percent.")]
+    public float amount_percent { set; get; }
 
     [BooleanProperty("Completely Random Pressure", ""), ToolTip
         ("Completely Random Pressure: Min: False, Max: True, Default: False\n" +
