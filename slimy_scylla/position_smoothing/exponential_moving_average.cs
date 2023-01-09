@@ -110,8 +110,8 @@ public sealed class slimy_scylla_position_smoothing_exponential_moving_average :
 
     [BooleanProperty("Never Intercept Pressure on/off", ""), ToolTip
         ("Never Intercept Pressure on/off: Min: False, Max: True, Default: False\n" +
-        "When true, while Catch Up is true, pressure on/off will send even if the position has moved less than one pixel.\n" +
-        "When false, while Catch Up is true, pressure will wait to send until movement is detected.\n" +
-        "This setting does not apply when Catch Up is false.")]
+        "When true, while Catch Up is false, pressure on/off will send even if the position has moved less than one pixel.\n" +
+        "When false, while Catch Up is false, pressure will wait to send until movement is detected.\n" +
+        "This setting does not apply when Catch Up is true.")]
     public bool never_intercept_pressure_on_off { set; get; }
 }

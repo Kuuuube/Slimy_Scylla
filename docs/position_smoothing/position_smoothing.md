@@ -28,9 +28,9 @@ Usually setting this to 1 is enough for it function properly. Only increase the 
 
 **Never Intercept Pressure on/off:** Min: False, Max: True, Default: False
 
-When true, while Catch Up is true, pressure on/off will send even if the position has moved less than one pixel. When false, while Catch Up is true, pressure will wait to send until movement is detected. 
+When true, while Catch Up is false, pressure on/off will send even if the position has moved less than one pixel. When false, while Catch Up is false, pressure will wait to send until movement is detected. 
 
-This setting does not apply when Catch Up is false.
+This setting does not apply when Catch Up is true.
 
 ## Exponential Moving Average
 
@@ -60,9 +60,9 @@ Usually setting this to 1 is enough for it function properly. Only increase the 
 
 **Never Intercept Pressure on/off:** Min: False, Max: True, Default: False
 
-When true, while Catch Up is true, pressure on/off will send even if the position has moved less than one pixel. When false, while Catch Up is true, pressure will wait to send until movement is detected.
+When true, while Catch Up is false, pressure on/off will send even if the position has moved less than one pixel. When false, while Catch Up is false, pressure will wait to send until movement is detected. 
 
-This setting does not apply when Catch Up is false.
+This setting does not apply when Catch Up is true.
 
 ## Pulled String
 
