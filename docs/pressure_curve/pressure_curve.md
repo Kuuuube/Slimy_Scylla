@@ -1,6 +1,6 @@
 # Pressure Curve
 
-Visualization of the pressure curve: [Desmos Graph](https://www.desmos.com/calculator/xo0y9dc9ye). Raw formulas from Desmos: [Formulas](./docs/pressure_curve/desmos_graph_formulas.md)
+Visualization of the pressure curve: [Desmos Graph](https://www.desmos.com/calculator/xo0y9dc9ye). Raw formulas from Desmos: [Formulas](./desmos_graph_formulas.md)
 
 ## Pressure Curve
 
