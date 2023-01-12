@@ -12,8 +12,9 @@ A small amount of smoothing that wont create much lag or much alteration to line
 Amount: 7
 Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Apply to Hover: False
 Remove Tail Position Reports: 1
+Leak Smoothing to Hover: False
+Apply to Hover: False
 Never Intercept Pressure on/off: False
 ```
 
@@ -22,7 +23,7 @@ Never Intercept Pressure on/off: False
 ```
 Amount: 7
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Remove Tail Pressure Reports: 1
+Remove Tail Pressure Reports: 0
 ```
 
 ## Massive Smoothing
@@ -35,8 +36,9 @@ A large amount of smoothing that can make drawing big lines easier.
 Amount: 30
 Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Apply to Hover: False
 Remove Tail Position Reports: 1
+Leak Smoothing to Hover: False
+Apply to Hover: False
 Never Intercept Pressure on/off: False
 ```
 
@@ -45,7 +47,7 @@ Never Intercept Pressure on/off: False
 ```
 Amount: 25
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Remove Tail Pressure Reports: 1
+Remove Tail Pressure Reports: 0
 ```
 
 ## Pulled String
@@ -57,8 +59,9 @@ Helps retain control and eliminate jitter while drawing slowly.
 ```
 String Length: 40
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
+Remove Tail Position Reports: 1
+Leak Smoothing to Hover: False
 Apply to Hover: False
-Remove Tail Pressure Reports: 1
 Never Intercept Pressure on/off: False
 ```
 
@@ -67,7 +70,7 @@ Never Intercept Pressure on/off: False
 ```
 Amount: 10
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Remove Tail Pressure Reports: 1
+Remove Tail Pressure Reports: 0
 ```
 
 ## Pressure Gain
@@ -80,8 +83,9 @@ A small amount of smoothing and a pressure curve to make reaching higher pressur
 Amount: 10
 Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Apply to Hover: False
 Remove Tail Position Reports: 1
+Leak Smoothing to Hover: False
+Apply to Hover: False
 Never Intercept Pressure on/off: False
 ```
 
@@ -101,7 +105,7 @@ Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 ```
 Amount: 8
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
-Remove Tail Pressure Reports: 1
+Remove Tail Pressure Reports: 0
 ```
 
 ## Weighted

@@ -41,21 +41,35 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     public override void Consume(IDeviceReport device_report)
     {
         if (device_report is ITabletReport report) {
-            if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+            if (!always_apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 report.Pressure = 0;
-                if (tail_reports > 0) {
-                    report.Position = last_position;
-                    tail_reports--;
-                }
+                last_pressure = 0;
+
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
+                    last_positions = new List<Vector2>();
+                    Emit?.Invoke(device_report);
+                    return;
                 }
-                last_positions = new List<Vector2>();
-                Emit?.Invoke(device_report);
-                return;
+
+                if (tail_reports > 0) {
+                    tail_reports--;
+                    if (!leak_smoothing_to_hover) {
+                        report.Position = last_position;
+                        Emit?.Invoke(device_report);
+                        return;
+                    }
+                }
             }
 
-            tail_reports = remove_tail_position_reports;
+            if (report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure() && !always_apply_to_hover) {
+                //must be reset before a new line can be drawn
+                if (tail_reports < remove_tail_position_reports) {
+                    last_position = new Vector2();
+                    last_positions = new List<Vector2>();
+                }
+                tail_reports = remove_tail_position_reports;
+            }
 
             if (catch_up) {
                 report.Position = moving_average(report.Position);
@@ -105,17 +119,23 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
         "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
     public float pressure_deadzone_percent { set; get; }
 
-    [BooleanProperty("Apply to Hover", ""), ToolTip
-        ("Apply to Hover: Min: False, Max: True, Default: False\n" +
-        "When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.")]
-    public bool apply_to_hover { set; get; }
-
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
         ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +
         "Stops drawing programs from adding their own smoothing at the end of lines which commonly creates \"shoelace line endings\" or \"line tails\".\n" +
         "A sudden position change when transitioning to hover can cause unintended lines.\n" +
         "Usually setting this to 1 is enough for it function properly. Only increase the value if required.")]
     public int remove_tail_position_reports { set; get; }
+
+    [BooleanProperty("Leak Smoothing to Hover", ""), ToolTip
+        ("Leak Smoothing to Hover: Min: False, Max: True, Default: False\n" +
+        "Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.\n" +
+        "Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.")]
+    public bool leak_smoothing_to_hover { set; get; }
+
+    [BooleanProperty("Always Apply to Hover", ""), ToolTip
+        ("Apply to Hover: Min: False, Max: True, Default: False\n" +
+        "When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.")]
+    public bool always_apply_to_hover { set; get; }
 
     [BooleanProperty("Never Intercept Pressure on/off", ""), ToolTip
         ("Never Intercept Pressure on/off: Min: False, Max: True, Default: False\n" +

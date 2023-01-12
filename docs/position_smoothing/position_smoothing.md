@@ -16,15 +16,21 @@ When true, the current position is always updated. When false, the current posit
 
 Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
-**Apply to Hover:** Min: False, Max: True, Default: False
-
-When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
-
 **Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails". 
 
 Usually setting this to 1 is enough for it function properly. Only increase the value if required.
+
+**Leak Smoothing to Hover:** Min: False, Max: True, Default: False
+
+Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.
+
+Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
+
+**Always Apply to Hover:** Min: False, Max: True, Default: False
+
+When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
 
 **Never Intercept Pressure on/off:** Min: False, Max: True, Default: False
 
@@ -48,15 +54,21 @@ When true, the current position is always updated. When false, the current posit
 
 Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
-**Apply to Hover:** Min: False, Max: True, Default: False
-
-When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
-
 **Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails". 
 
 Usually setting this to 1 is enough for it function properly. Only increase the value if required.
+
+**Leak Smoothing to Hover:** Min: False, Max: True, Default: False
+
+Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.
+
+Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
+
+**Always Apply to Hover:** Min: False, Max: True, Default: False
+
+When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
 
 **Never Intercept Pressure on/off:** Min: False, Max: True, Default: False
 
@@ -76,10 +88,6 @@ The radius of the circular deadzone in pixels.
 
 Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
-**Apply to Hover:** Min: False, Max: True, Default: False
-
-When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
-
 **Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails". 
@@ -87,6 +95,16 @@ Stops drawing programs from adding their own smoothing at the end of lines which
 Using this on Pulled String is important as you may commonly finish lines at a different position than the real position. A sudden position change when transitioning to hover can cause unintended lines.
 
 Usually setting this to 1 is enough for it function properly. Only increase the value if required.
+
+**Leak Smoothing to Hover:** Min: False, Max: True, Default: False
+
+Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.
+
+Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
+
+**Always Apply to Hover:** Min: False, Max: True, Default: False
+
+When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
 
 **Never Intercept Pressure on/off:** Min: False, Max: True, Default: False
 
