@@ -106,6 +106,6 @@ Using any other filter with Remove Tail Position Reports > 0 and without Leak Sm
 
 When true, the smoothing is applied while hovering. When false, smoothing is turned off while hovering.
 
-**Never Intercept Pressure on/off:** Min: False, Max: True, Default: False
+**Never Intercept Pressure on/off:** Min: False, Max: True, Default: True
 
 When true, pressure on/off will send even if the position has moved less than one pixel. When false, pressure will wait to send until movement is detected.

@@ -14,7 +14,7 @@ Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
-Apply to Hover: False
+Always Apply to Hover: False
 Never Intercept Pressure on/off: False
 ```
 
@@ -38,7 +38,7 @@ Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
-Apply to Hover: False
+Always Apply to Hover: False
 Never Intercept Pressure on/off: False
 ```
 
@@ -61,8 +61,8 @@ String Length: 40
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
-Apply to Hover: False
-Never Intercept Pressure on/off: False
+Always Apply to Hover: False
+Never Intercept Pressure on/off: True
 ```
 
 **Pressure Processing Moving Average:**
@@ -85,7 +85,7 @@ Catch Up: True
 Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
-Apply to Hover: False
+Always Apply to Hover: False
 Never Intercept Pressure on/off: False
 ```
 
