@@ -129,7 +129,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     [BooleanProperty("Leak Smoothing to Hover", ""), ToolTip
         ("Leak Smoothing to Hover: Min: False, Max: True, Default: False\n" +
         "Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.\n" +
-        "Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.")]
+        "Using any other filter (including Pressure Processing) with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.")]
     public bool leak_smoothing_to_hover { set; get; }
 
     [BooleanProperty("Always Apply to Hover", ""), ToolTip

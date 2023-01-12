@@ -26,7 +26,7 @@ Usually setting this to 1 is enough for it function properly. Only increase the 
 
 Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.
 
-Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
+Using any other filter (including Pressure Processing) with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
 
 **Always Apply to Hover:** Min: False, Max: True, Default: False
 
@@ -64,7 +64,7 @@ Usually setting this to 1 is enough for it function properly. Only increase the 
 
 Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.
 
-Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
+Using any other filter (including Pressure Processing) with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
 
 **Always Apply to Hover:** Min: False, Max: True, Default: False
 
@@ -100,7 +100,7 @@ Usually setting this to 1 is enough for it function properly. Only increase the 
 
 Applies smoothing to the amount of reports in Remove Tail Position Reports after the pen tip is released instead of holding the last postition.
 
-Using any other filter with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
+Using any other filter (including Pressure Processing) with Remove Tail Position Reports > 0 and without Leak Smoothing to Hover enabled will override this option.
 
 **Always Apply to Hover:** Min: False, Max: True, Default: False
 
