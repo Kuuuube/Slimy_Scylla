@@ -137,7 +137,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
     public bool always_apply_to_hover { set; get; }
 
     [BooleanProperty("Never Intercept Pressure on/off", ""),DefaultPropertyValue(true), ToolTip
-        ("Never Intercept Pressure on/off: Min: False, Max: True, Default: False\n" +
+        ("Never Intercept Pressure on/off: Min: False, Max: True, Default: True\n" +
         "When true, pressure on/off will send even if the position has moved less than one pixel. When false, pressure will wait to send until movement is detected.")]
     public bool never_intercept_pressure_on_off { set; get; }
 }
