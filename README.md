@@ -2,7 +2,9 @@
 
 Provides popular input processing methods for drawing tablets.
 
-## Quick Start Guide
+## Quick Start Guides
+
+[Install Guide](./docs/install_guide/install_guide.md)
 
 [Recommended Settings for New Users](./docs/recommended_settings/recommended_settings.md)
 
