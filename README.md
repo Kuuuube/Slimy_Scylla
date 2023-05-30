@@ -1,6 +1,6 @@
 # Slimy Scylla Plugin for [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver)
 
-Provides popular input processing methods for drawing tablets.
+Provides popular input processing methods for drawing.
 
 ## Quick Start Guides
 
