@@ -1,4 +1,4 @@
-# Slimy Scylla Plugin for [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver)
+# Slimy Scylla Plugin for [OpenTabletDriver](https://github.com/OpenTabletDriver/OpenTabletDriver) [![](https://img.shields.io/github/downloads/Kuuuube/Slimy_Scylla/total.svg)](https://github.com/Kuuuube/Slimy_Scylla/releases/latest)
 
 Provides popular input processing methods for drawing.
 
