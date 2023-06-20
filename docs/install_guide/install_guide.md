@@ -1,16 +1,12 @@
 # Install Guide
 
-## Plugin Manager Local Install
-
-- Download the first zip file from the [Latest Release](https://github.com/Kuuuube/Slimy_Scylla/releases/latest)
-
-    It will be named something similar to `x.x.x_release_slimy_scylla.zip`
+## Plugin Repo Install
 
 - On OpenTabletDriver's top menu, go to `Plugins` > `Open Plugin Manager...`
 
-- In the plugin manager window, either drag and drop the zip file or go to `File` > `Install Plugin...` and select the zip file
+- In the plugin manager window, select `Slimy Scylla` on the left pane.
 
-- The plugin's filters should now appear in the `Filters` tab
+- Select `Install` on the bottom right.
 
 ## Plugin Manager Manual Install
 
@@ -20,13 +16,7 @@
 
 - On OpenTabletDriver's top menu, go to `Plugins` > `Open Plugin Manager...`
 
-- In the plugin manager window, go to `File` > `Open Plugins Directory...`
-
-- Extract the zip file into the plugins directory
-
-    Make sure the Slimy Scylla dlls are one directory down from the main plugin directory. For example: `Plugins/slimy_scylla/slimy_scylla.dll`
-
-- Restart OpenTabletDriver
+- In the plugin manager window, either drag and drop the zip file or go to `File` > `Install Plugin...` and select the zip file
 
 - The plugin's filters should now appear in the `Filters` tab
 
