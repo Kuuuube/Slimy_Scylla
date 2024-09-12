@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\.modules\OpenTabletDriver\OpenTabletDriver.Plugin\OpenTabletDriver.Plugin.csproj" />
-    <ProjectReference Include="..\.modules\opentabletdriver\opentabletdriver\opentabletdriver.csproj" />
+    <ProjectReference Include="..\.modules\OpenTabletDriver\OpenTabletDriver\OpenTabletDriver.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenTabletDriver", "OpenTab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenTabletDriver.Plugin", ".modules\OpenTabletDriver\OpenTabletDriver.Plugin\OpenTabletDriver.Plugin.csproj", "{926CADF4-08F8-4092-82D3-FA49830B13F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver", ".modules\opentabletdriver\opentabletdriver\opentabletdriver.csproj", "{15C0B5F6-7066-4696-A20E-9C5419F02CD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver", ".modules\OpenTabletDriver\OpenTabletDriver\OpenTabletDriver.csproj", "{15C0B5F6-7066-4696-A20E-9C5419F02CD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver.native", ".modules\opentabletdriver\opentabletdriver.Native\opentabletdriver.native.csproj", "{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver.native", ".modules\OpenTabletDriver\OpenTabletDriver.Native\OpenTabletDriver.Native.csproj", "{CA9A7B4C-8DD8-4071-AD54-20EC2D6392E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver.configurations", ".modules\opentabletdriver\opentabletdriver.configurations\opentabletdriver.configurations.csproj", "{2959ABB7-D5EC-4F6F-8F5F-041C30142241}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "opentabletdriver.configurations", ".modules\OpenTabletDriver\OpenTabletDriver.Configurations\OpenTabletDriver.Configurations.csproj", "{2959ABB7-D5EC-4F6F-8F5F-041C30142241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
