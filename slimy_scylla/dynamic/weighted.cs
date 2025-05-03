@@ -15,7 +15,7 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
     private int tail_reports = 0;
 
     private float smooth_step(double a, double b, double x) {
-        //emulates lazy nezumi's smoothStep without cubic interpolation
+        //standin for cubic interpolation that did not seem necessary
         //finds the position of x between a and b as a value within 0 to 1
         return (float)Math.Clamp(((x - a) / (b - a)), 0, 1);
     }
