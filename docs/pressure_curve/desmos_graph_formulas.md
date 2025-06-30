@@ -10,4 +10,5 @@ y=\min\left(\max\left(\frac{m_{minimum}}{100},\left(\left(i_{invert}\cdot2-1\rig
 \left|\left(x+0.5\right)-\left(y+0.5\right)\right|\ +\ \left|\left(x-0.5\right)+\left(y-0.5\right)\right|\ =\ 1
 ```
 
-![](./desmos_graph_screenshot.PNG)
+![](./desmos_graph_presentation_screenshot.png)
+![](./desmos_graph_internals_screenshot.png)
