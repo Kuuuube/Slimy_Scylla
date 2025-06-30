@@ -1,6 +1,6 @@
 # Pressure Curve
 
-**It is recommended to use the pressure curve visualization graph:** [Desmos Graph](https://www.desmos.com/calculator/qw3xrppwe3).
+**It is recommended to use the pressure curve visualization graph:** [Desmos Graph](https://www.desmos.com/calculator/97s6f0yhlb).
 
 ## Pressure Curve
 
