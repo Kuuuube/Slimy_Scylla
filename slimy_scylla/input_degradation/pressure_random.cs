@@ -17,8 +17,8 @@ public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scyll
             pressure = (uint)(pressure + pressure * (amount_percent / 100) * (random * 2 - 1));
         }
 
-        if (pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-            pressure = (uint)(pressure_deadzone_percent / 100 * get_max_pressure() + 1);
+        if (pressure == 0) {
+            pressure = 1;
         }
         return pressure;
     }
@@ -29,8 +29,7 @@ public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scyll
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-                report.Pressure = 0;
+            if (report.Pressure == 0) {
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -52,9 +51,4 @@ public sealed class slimy_scylla_input_degradation_pressure_random : slimy_scyll
         ("Completely Random Pressure: Min: False, Max: True, Default: False\n" +
         "When true, ignores the current pressure and apply a completely randomized value.")]
     public bool completely_random_pressure { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 }

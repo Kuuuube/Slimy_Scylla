@@ -38,8 +38,8 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
         Vector3 position_pressure = new(position.X * lines_per_pixel().X, position.Y * lines_per_pixel().Y, pressure * get_max_pressure());
 
         //pressure must not go above the deadzone or the pen tip may release
-        if (position_pressure.Z <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-            position_pressure.Z = pressure_deadzone_percent / 100 * get_max_pressure() + 1;
+        if (position_pressure.Z == 0) {
+            position_pressure.Z = 1;
         }
         return position_pressure;
     }
@@ -50,7 +50,7 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+            if (report.Pressure == 0) {
                 v = new Vector2();
                 if (tail_reports > 0) {
                     report.Position = last_position * lines_per_pixel();
@@ -59,7 +59,6 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
                 }
-                report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -89,11 +88,6 @@ public sealed class slimy_scylla_dynamic_weighted : slimy_scylla_base
         ("Max Pressure Speed: Min: 1.00, Max: 50.00, Default: 20.00\n" +
         "The speed at which maximum pressure will be sent.")]
     public float max_pressure_speed { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
         ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +

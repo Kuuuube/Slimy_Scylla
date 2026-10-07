@@ -44,9 +44,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (!always_apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-                report.Pressure = 0;
-
+            if (!always_apply_to_hover && report.Pressure == 0) {
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
                     first_report = true;
@@ -64,7 +62,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
                 }
             }
 
-            if (report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure() && !always_apply_to_hover) {
+            if (report.Pressure > 0 && !always_apply_to_hover) {
                 //must be reset before a new line can be drawn
                 if (tail_reports < remove_tail_position_reports) {
                     last_position = new Vector2();
@@ -90,7 +88,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
             //ignore reports that move less than string length px
             if ((Math.Pow(delta.X - 0, 2) / Math.Pow(lppx.X * string_length, 2)) + (Math.Pow(delta.Y - 0, 2) / Math.Pow(lppx.Y * string_length, 2)) < 1) {
                 report.Position = last_position;
-                if (never_intercept_pressure_on_off && ((last_pressure > pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) || (last_pressure <= pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure()))) {
+                if (never_intercept_pressure_on_off && ((last_pressure > 0 && report.Pressure == 0) || (last_pressure == 0 && report.Pressure > 0))) {
                     //let the pressure through
                 } else {
                     if (report.Pressure != 0) {
@@ -114,11 +112,6 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
         ("String Length: Min: 0, Max: 200, Default: 35\n" +
         "The radius of the circular deadzone in pixels.")]
     public int string_length { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
         ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +

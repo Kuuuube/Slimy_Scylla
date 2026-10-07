@@ -21,8 +21,7 @@ public sealed class slimy_scylla_input_degradation_quantize : slimy_scylla_base
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (!apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-                report.Pressure = 0;
+            if (!apply_to_hover && report.Pressure == 0) {
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -49,11 +48,6 @@ public sealed class slimy_scylla_input_degradation_quantize : slimy_scylla_base
         ("Scale: Min: 0.00, Max: 2.00, Default: 1.00\n" +
         "Multiplier for the size of the grid in both axes.")]
     public float scale { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 
     [BooleanProperty("Apply to Hover", ""), ToolTip
         ("Apply to Hover: Min: False, Max: True, Default: False\n" +

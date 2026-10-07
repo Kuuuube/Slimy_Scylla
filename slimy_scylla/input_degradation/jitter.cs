@@ -63,8 +63,8 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         Vector2 normalized_position = position / get_max_coords();
         position = new Vector2((position_px.X + ((normalized_position.X * 2 - 1) * position_noise)) * lppx.X, (position_px.Y + ((normalized_position.Y * 2 - 1) * position_noise)) * lppx.Y);
         
-        if (pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-            pressure = (uint)(pressure_deadzone_percent / 100 * get_max_pressure() + 1);
+        if (pressure == 0) {
+            pressure = 1;
         }
         return new Vector3(position, pressure);
     }
@@ -75,10 +75,9 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+            if (report.Pressure == 0) {
                 seed = 0;
                 start_point = new Vector2();
-                report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -111,9 +110,4 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         ("Position Noise Period: Min: 0.00, Max: 10.00, Default: 15.00\n" +
         "The variability in position over time.")]
     public float position_noise_period { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 }

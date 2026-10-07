@@ -32,13 +32,12 @@ public sealed class slimy_scylla_pressure_processing_exponential_moving_average 
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+            if (report.Pressure == 0 ) {
                 if (tail_reports > 0) {
                     report.Position = last_pos;
                     tail_reports--;
                 }
                 last_pressure = 0;
-                report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -57,11 +56,6 @@ public sealed class slimy_scylla_pressure_processing_exponential_moving_average 
         ("Amount: Min: 0.00, Max: 1.00, Default: 0.10\n" +
         "Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.")]
     public float amount { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 
     [Property("Remove Tail Pressure Reports"), DefaultPropertyValue(1), ToolTip
         ("Remove Tail Pressure Reports: Min: 0, Max: 10, Default: 1\n" +

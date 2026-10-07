@@ -58,7 +58,7 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
+            if (report.Pressure == 0) {
                 ss = 0;
                 if (tail_reports > 0) {
                     report.Position = last_position * lines_per_pixel();
@@ -67,7 +67,6 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
                 }
-                report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;
             }
@@ -105,11 +104,6 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
         ("Inertia Decel: Min: 0.00, Max: 0.95, Default: 0.85\n" +
         "Scales the amount of inertia present when decelerating in speed.")]
     public float inertia_decel { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
         ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +

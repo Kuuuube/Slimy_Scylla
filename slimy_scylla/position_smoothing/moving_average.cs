@@ -45,8 +45,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
         if (device_report == null) return;
 
         if (device_report is ITabletReport report) {
-            if (!always_apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
-                report.Pressure = 0;
+            if (!always_apply_to_hover && report.Pressure == 0) {
                 last_pressure = 0;
 
                 if (tail_reports <= 0) {
@@ -66,7 +65,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
                 }
             }
 
-            if (report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure() && !always_apply_to_hover) {
+            if (report.Pressure > 0 && !always_apply_to_hover) {
                 //must be reset before a new line can be drawn
                 if (tail_reports < remove_tail_position_reports) {
                     last_position = new Vector2();
@@ -89,7 +88,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
 
                 if (max_delta < max_lppx) {
                     report.Position = last_position;
-                    if (never_intercept_pressure_on_off && ((last_pressure > pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) || (last_pressure <= pressure_deadzone_percent / 100 * get_max_pressure() && report.Pressure > pressure_deadzone_percent / 100 * get_max_pressure()))) {
+                    if (never_intercept_pressure_on_off && ((last_pressure > 0 && report.Pressure == 0) || (last_pressure == 0 && report.Pressure > 0))) {
                         //let the pressure through
                     } else {
                         report.Pressure = last_pressure;
@@ -117,11 +116,6 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
         ("Catch Up: Min: False, Max: True, Default: True\n" +
         "When true, the current position is always updated. When false, the current position is held until it moves at least one pixel.")]
     public bool catch_up { set; get; }
-
-    [Property("Pressure Deadzone"), Unit("%"), ToolTip
-        ("Pressure Deadzone: Min: 0%, Max: 100%, Default: 0%\n" +
-        "Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.")]
-    public float pressure_deadzone_percent { set; get; }
 
     [Property("Remove Tail Position Reports"), DefaultPropertyValue(1), ToolTip
         ("Remove Tail Position Reports: Min: 0, Max: 10, Default: 1\n" +
