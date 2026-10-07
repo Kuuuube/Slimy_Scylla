@@ -9,7 +9,7 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Tilt Smoothing Exponential Moving Average")]
 public sealed class slimy_scylla_tilt_smoothing_exponential_moving_average : slimy_scylla_base
 {
-    private Vector2 last_tilt = new Vector2();
+    private Vector2 last_tilt = new();
 
     private Vector2 exponential_moving_average(Vector2 tilt) {
         //scale the smoothing amount by x^(0.02/x) to make the difference between different settings feels better

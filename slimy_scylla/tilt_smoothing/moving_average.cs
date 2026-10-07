@@ -9,7 +9,7 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Tilt Smoothing Moving Average")]
 public sealed class slimy_scylla_tilt_smoothing_moving_average : slimy_scylla_base
 {
-    private List<Vector2> last_tilts = new List<Vector2>();
+    private List<Vector2> last_tilts = [];
 
     private Vector2 moving_average(Vector2 tilt) {
         last_tilts.Add(tilt);
@@ -20,7 +20,7 @@ public sealed class slimy_scylla_tilt_smoothing_moving_average : slimy_scylla_ba
             last_tilts.Add(tilt);
         }
 
-        Vector2 total = new Vector2();
+        Vector2 total = new();
         foreach (Vector2 last_tilt in last_tilts) {
             total.X += last_tilt.X;
             total.Y += last_tilt.Y;

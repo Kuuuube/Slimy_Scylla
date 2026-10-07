@@ -10,7 +10,7 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_pressure_processing_exponential_moving_average : slimy_scylla_base
 {
     private uint last_pressure = 0;
-    private Vector2 last_pos = new Vector2();
+    private Vector2 last_pos = new();
     private int tail_reports = 0;
 
     private uint exponential_moving_average(uint pressure) {

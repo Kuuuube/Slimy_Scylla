@@ -9,8 +9,8 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Position Smoothing Moving Average")]
 public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scylla_base
 {
-    private List<Vector2> last_positions = new List<Vector2>();
-    private Vector2 last_position = new Vector2();
+    private List<Vector2> last_positions = [];
+    private Vector2 last_position = new();
     private uint last_pressure = 0;
     private int tail_reports = 0;
 
@@ -23,7 +23,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
             last_positions.Add(position);
         }
 
-        Vector2 total = new Vector2();
+        Vector2 total = new();
         foreach (Vector2 last_position in last_positions) {
             total.X += last_position.X;
             total.Y += last_position.Y;
@@ -51,7 +51,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
 
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
-                    last_positions = new List<Vector2>();
+                    last_positions = [];
                     Emit?.Invoke(device_report);
                     return;
                 }
@@ -70,7 +70,7 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
                 //must be reset before a new line can be drawn
                 if (tail_reports < remove_tail_position_reports) {
                     last_position = new Vector2();
-                    last_positions = new List<Vector2>();
+                    last_positions = [];
                 }
                 tail_reports = remove_tail_position_reports;
             }

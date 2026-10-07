@@ -10,7 +10,7 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_input_degradation_quantize : slimy_scylla_base
 {
     private Vector2 quantize(Vector2 position) {
-        Vector2 grid_size = new Vector2(scale * x_grid * lines_per_pixel().X, scale * y_grid * lines_per_pixel().Y);
+        Vector2 grid_size = new(scale * x_grid * lines_per_pixel().X, scale * y_grid * lines_per_pixel().Y);
         position = new Vector2((float)Math.Floor(position.X / grid_size.X) * grid_size.X, (float)Math.Floor(position.Y / grid_size.Y) * grid_size.Y);
         return position;
     }

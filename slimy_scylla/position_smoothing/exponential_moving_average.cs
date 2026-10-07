@@ -9,8 +9,8 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Position Smoothing Exponential Moving Average")]
 public sealed class slimy_scylla_position_smoothing_exponential_moving_average : slimy_scylla_base
 {
-    private Vector2 last_position = new Vector2();
-    private Vector2 last_raw_position = new Vector2();
+    private Vector2 last_position = new();
+    private Vector2 last_raw_position = new();
     private uint last_pressure = 0;
     private int tail_reports = 0;
 

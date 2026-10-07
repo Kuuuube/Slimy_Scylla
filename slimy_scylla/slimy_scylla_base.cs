@@ -16,13 +16,13 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
             float digitizer_height = absolute_output_mode.Tablet.Properties.Specifications.Digitizer.Height;
             float digitizer_max_x = absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX;
             float digitizer_max_y = absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY;
-            Vector2 lpmm = new Vector2(digitizer_max_x / digitizer_width, digitizer_max_y / digitizer_height);
+            Vector2 lpmm = new(digitizer_max_x / digitizer_width, digitizer_max_y / digitizer_height);
 
             float area_width = absolute_output_mode.Input.Width;
             float area_height = absolute_output_mode.Input.Height;
             float monitor_width = absolute_output_mode.Output.Width;
             float monitor_height = absolute_output_mode.Output.Height;
-            Vector2 pxpmm = new Vector2(monitor_width / area_width, monitor_height / area_height);
+            Vector2 pxpmm = new(monitor_width / area_width, monitor_height / area_height);
 
             return new Vector2(lpmm.X / pxpmm.X, lpmm.Y / pxpmm.Y);
         }
@@ -32,11 +32,11 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
             float digitizer_height = relative_output_mode.Tablet.Properties.Specifications.Digitizer.Height;
             float digitizer_max_x = relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX;
             float digitizer_max_y = relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY;
-            Vector2 lpmm = new Vector2(digitizer_max_x / digitizer_width, digitizer_max_y / digitizer_height);
+            Vector2 lpmm = new(digitizer_max_x / digitizer_width, digitizer_max_y / digitizer_height);
 
             float sens_x = relative_output_mode.Sensitivity.X;
             float sens_y = relative_output_mode.Sensitivity.Y;
-            Vector2 pxpmm = new Vector2(sens_x, sens_y);
+            Vector2 pxpmm = new(sens_x, sens_y);
 
             return new Vector2(lpmm.X / pxpmm.X, lpmm.Y / pxpmm.Y);
         }

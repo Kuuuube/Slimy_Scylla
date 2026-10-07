@@ -11,7 +11,7 @@ public sealed class slimy_scylla_pressure_processing_sample_and_hold : slimy_scy
 {
     private uint hold_pressure = 0;
     private int samples = 0;
-    private Vector2 last_pos = new Vector2();
+    private Vector2 last_pos = new();
     private int tail_reports = 0;
 
     public override event Action<IDeviceReport>? Emit;

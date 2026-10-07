@@ -9,7 +9,7 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Dynamic Speed Smooth")]
 public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
 {
-    private Vector2 last_position = new Vector2();
+    private Vector2 last_position = new();
     private float ss = 0;
     private int tail_reports = 0;
 
@@ -31,7 +31,7 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
 
         position = new Vector2(position.X / lines_per_pixel().X, position.Y / lines_per_pixel().Y);
 
-        Vector2 d = new Vector2(position.X - last_position.X, position.Y - last_position.Y);
+        Vector2 d = new(position.X - last_position.X, position.Y - last_position.Y);
         float accel_decel;
         float s = (float)Math.Sqrt((position.X-last_position.X) * (position.X-last_position.X) + (position.Y-last_position.Y) * (position.Y-last_position.Y));
         if (s > ss) {

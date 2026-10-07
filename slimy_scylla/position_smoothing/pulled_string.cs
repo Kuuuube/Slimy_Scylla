@@ -9,16 +9,16 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Position Smoothing Pulled String")]
 public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla_base
 {
-    private Vector2 last_position = new Vector2();
+    private Vector2 last_position = new();
     private uint last_pressure = 0;
     private bool first_report = true;
     private int tail_reports = 0;
 
     private Vector2 pulled_string(Vector2 position, Vector2 string_length_lines, Vector2 delta) {
-        Vector3 point_on_ellipse = new Vector3();
+        Vector3 point_on_ellipse = new();
         int step_count = 100;
-        Vector2 step_size = new Vector2(delta.X / step_count, delta.Y / step_count);
-        Vector2 try_point = new Vector2(position.X, position.Y);
+        Vector2 step_size = new(delta.X / step_count, delta.Y / step_count);
+        Vector2 try_point = new(position.X, position.Y);
         for (int i = 0; i <= step_count; i++) {
             try_point = new Vector2(try_point.X - step_size.X, try_point.Y - step_size.Y);
             double test_point = (Math.Pow(try_point.X - position.X, 2) / Math.Pow(string_length_lines.X, 2)) + (Math.Pow(try_point.Y - position.Y, 2) / Math.Pow(string_length_lines.Y, 2));
@@ -84,8 +84,8 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
                 return;
             }
 
-            Vector2 lppx = new Vector2(lines_per_pixel().X, lines_per_pixel().Y);
-            Vector2 delta = new Vector2(report.Position.X - last_position.X, report.Position.Y - last_position.Y);
+            Vector2 lppx = new(lines_per_pixel().X, lines_per_pixel().Y);
+            Vector2 delta = new(report.Position.X - last_position.X, report.Position.Y - last_position.Y);
 
             //ignore reports that move less than string length px
             if ((Math.Pow(delta.X - 0, 2) / Math.Pow(lppx.X * string_length, 2)) + (Math.Pow(delta.Y - 0, 2) / Math.Pow(lppx.Y * string_length, 2)) < 1) {

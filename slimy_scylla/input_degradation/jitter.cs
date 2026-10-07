@@ -10,7 +10,7 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
 {
     private int seed = 0;
-    private Vector2 start_point = new Vector2();
+    private Vector2 start_point = new();
 
     //noise function taken from:
     //https://www.desmos.com/calculator/wb1yoxqkd4
@@ -52,8 +52,8 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         }
 
         Vector2 lppx = lines_per_pixel();
-        Vector2 position_px = new Vector2(position.X / lppx.X, position.Y / lppx.Y);
-        Vector2 start_point_px = new Vector2(start_point.X / lppx.X, start_point.Y / lppx.Y);
+        Vector2 position_px = new(position.X / lppx.X, position.Y / lppx.Y);
+        Vector2 start_point_px = new(start_point.X / lppx.X, start_point.Y / lppx.Y);
         float distance_px = (float)Math.Sqrt((position_px.X - start_point_px.X) * (position_px.X - start_point_px.X) + (position_px.Y - start_point_px.Y) * (position_px.Y - start_point_px.Y));
         
         float ss = distance_px + seed;

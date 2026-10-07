@@ -9,7 +9,7 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Pressure Processing Fixed Value")]
 public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_base
 {
-    private Vector2 last_pos = new Vector2();
+    private Vector2 last_pos = new();
     private int tail_reports = 0;
 
     public override event Action<IDeviceReport>? Emit;

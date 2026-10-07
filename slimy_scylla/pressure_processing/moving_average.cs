@@ -9,8 +9,8 @@ namespace slimy_scylla;
 [PluginName("Slimy Scylla Pressure Processing Moving Average")]
 public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scylla_base
 {
-    private List<uint> last_pressures = new List<uint>();
-    private Vector2 last_pos = new Vector2();
+    private List<uint> last_pressures = [];
+    private Vector2 last_pos = new();
     private int tail_reports = 0;
 
     private uint moving_average(uint pressure) {
@@ -42,7 +42,7 @@ public sealed class slimy_scylla_pressure_processing_moving_average : slimy_scyl
                     report.Position = last_pos;
                     tail_reports--;
                 }
-                last_pressures = new List<uint>();
+                last_pressures = [];
                 report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;
