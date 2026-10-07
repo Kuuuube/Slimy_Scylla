@@ -11,7 +11,6 @@ A small amount of smoothing that wont create much lag or much alteration to line
 ```
 Amount: 7
 Catch Up: True
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
 Always Apply to Hover: False
@@ -22,7 +21,6 @@ Never Intercept Pressure on/off: False
 
 ```
 Amount: 7
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```
 
@@ -35,7 +33,6 @@ A large amount of smoothing that can make drawing big lines easier.
 ```
 Amount: 30
 Catch Up: True
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
 Always Apply to Hover: False
@@ -46,7 +43,6 @@ Never Intercept Pressure on/off: False
 
 ```
 Amount: 25
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```
 
@@ -58,7 +54,6 @@ Helps retain control and eliminate jitter while drawing slowly.
 
 ```
 String Length: 40
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
 Always Apply to Hover: False
@@ -69,7 +64,6 @@ Never Intercept Pressure on/off: True
 
 ```
 Amount: 10
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```
 
@@ -82,7 +76,6 @@ A small amount of smoothing and a pressure curve to make reaching higher pressur
 ```
 Amount: 10
 Catch Up: True
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Position Reports: 1
 Leak Smoothing to Hover: False
 Always Apply to Hover: False
@@ -97,14 +90,12 @@ Softness: -0.32
 Minimum Value: 0
 Maximum Value: 100
 Invert: False
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 ```
 
 **Pressure Processing Moving Average:**
 
 ```
 Amount: 8
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```
 
@@ -118,7 +109,6 @@ Converts speed into pressure. Keep your pen down for a second after ending a lin
 Drag: 0.2
 Mass: 31.25
 Max Pressure Speed: 20
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```
 
@@ -134,7 +124,6 @@ Max Smooth Speed: 55
 Smooth Amount: 0.98
 Inertia Accel: 0.5
 Inertia Decel: 0.85
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```
 
@@ -142,6 +131,5 @@ Remove Tail Pressure Reports: 1
 
 ```
 Amount: 5
-Pressure Deadzone: Match your Tip Threshold in the Pen Settings tab.
 Remove Tail Pressure Reports: 1
 ```

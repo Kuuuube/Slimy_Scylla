@@ -12,10 +12,6 @@ The number of reports to average. The higher the value, the higher the smoothing
 
 When true, the current position is always updated. When false, the current position is held until it moves at least one pixel.
 
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
-
 **Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails". 
@@ -50,10 +46,6 @@ Changes the amount of smoothing applied. The higher the value within the min and
 
 When true, the current position is always updated. When false, the current position is held until it moves at least one pixel.
 
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
-
 **Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails". 
@@ -83,10 +75,6 @@ Creates a circular deadzone around the position and when leaving the deadzone, t
 **String Length:** Min: 0, Max: 200, Default: 35
 
 The radius of the circular deadzone in pixels.
-
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
 **Remove Tail Position Reports:** Min: 0, Max: 10, Default: 1
 

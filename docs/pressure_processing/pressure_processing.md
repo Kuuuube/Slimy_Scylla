@@ -8,10 +8,6 @@ Sets the pressure to a constant value while the pen is pressed.
 
 The pressure percent to set pressure to.
 
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
-
 **Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails".
@@ -25,10 +21,6 @@ Locks the pressure at the pressure value present when the number of tablet repor
 **Sample Number:** Min: 1, Max: 100, Default: 15
 
 The number of samples before locking pressure.
-
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
 **Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
 
@@ -44,10 +36,6 @@ Applies smoothing by averaging a set amount of recent reports.
 
 The number of reports to average. The higher the value, the higher the smoothing.
 
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
-
 **Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
 
 Stops drawing programs from adding their own smoothing at the end of lines which commonly creates "shoelace line endings" or "line tails".
@@ -61,10 +49,6 @@ Similar to Moving Average but changes the weight of current and past reports. Th
 **Amount:** Min: 0.00, Max: 1.00, Default: 0.10
 
 Changes the amount of smoothing applied. The higher the value within the min and max, the higher the smoothing.
-
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
 
 **Remove Tail Pressure Reports:** Min: 0, Max: 10, Default: 1
 

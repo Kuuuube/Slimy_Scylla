@@ -23,7 +23,3 @@ The maximum output Pressure.
 **Invert:** Min: False, Max: True, Default: False
 
 Flips the pressure curve on the y-axis.
-
-**Pressure Deadzone:** Min: 0%, Max: 100%, Default: 0%
-
-Adds a pressure deadzone at the set pressure percent. Match this value to your Tip Threshold in the Pen Settings tab.
