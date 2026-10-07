@@ -38,8 +38,12 @@ public sealed class slimy_scylla_position_smoothing_moving_average : slimy_scyll
     }
 
     public override event Action<IDeviceReport>? Emit;
-    public override void Consume(IDeviceReport device_report)
+    public override void Consume(IDeviceReport? device_report)
     {
+        if (device_report == null) return;
+
+        if (device_report == null) return;
+
         if (device_report is ITabletReport report) {
             if (!always_apply_to_hover && report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 report.Pressure = 0;

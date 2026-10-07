@@ -10,7 +10,6 @@ namespace slimy_scylla;
 public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
 {
     private Vector2 last_position = new Vector2();
-    private uint last_pressure = 0;
     private float ss = 0;
     private int tail_reports = 0;
 
@@ -54,8 +53,10 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
     }
 
     public override event Action<IDeviceReport>? Emit;
-    public override void Consume(IDeviceReport device_report)
+    public override void Consume(IDeviceReport? device_report)
     {
+        if (device_report == null) return;
+
         if (device_report is ITabletReport report) {
             if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 ss = 0;
@@ -66,7 +67,6 @@ public sealed class slimy_scylla_dynamic_speed_smooth : slimy_scylla_base
                 if (tail_reports <= 0) {
                     last_position = new Vector2();
                 }
-                last_pressure = 0;
                 report.Pressure = 0;
                 Emit?.Invoke(device_report);
                 return;

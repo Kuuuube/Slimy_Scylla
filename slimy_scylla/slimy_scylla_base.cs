@@ -10,7 +10,8 @@ namespace slimy_scylla;
 public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceReport>
 {
     public Vector2 lines_per_pixel() {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
+        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null &&
+            absolute_output_mode.Tablet != null && absolute_output_mode.Input != null && absolute_output_mode.Output != null) {
             float digitizer_width = absolute_output_mode.Tablet.Properties.Specifications.Digitizer.Width;
             float digitizer_height = absolute_output_mode.Tablet.Properties.Specifications.Digitizer.Height;
             float digitizer_max_x = absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX;
@@ -26,7 +27,7 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
             return new Vector2(lpmm.X / pxpmm.X, lpmm.Y / pxpmm.Y);
         }
 
-        if (output_mode_type == OutputModeType.relative && relative_output_mode != null) {
+        if (output_mode_type == OutputModeType.relative && relative_output_mode != null && relative_output_mode.Tablet != null) {
             float digitizer_width = relative_output_mode.Tablet.Properties.Specifications.Digitizer.Width;
             float digitizer_height = relative_output_mode.Tablet.Properties.Specifications.Digitizer.Height;
             float digitizer_max_x = relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX;
@@ -45,11 +46,11 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
     }
 
     public uint get_max_pressure() {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
+        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null && absolute_output_mode.Tablet != null) {
             return absolute_output_mode.Tablet.Properties.Specifications.Pen.MaxPressure;
         }
 
-        if (output_mode_type == OutputModeType.relative && relative_output_mode != null) {
+        if (output_mode_type == OutputModeType.relative && relative_output_mode != null && relative_output_mode.Tablet != null) {
             return relative_output_mode.Tablet.Properties.Specifications.Pen.MaxPressure;
         }
 
@@ -58,11 +59,11 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
     }
 
     public Vector2 get_max_coords() {
-        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null) {
+        if (output_mode_type == OutputModeType.absolute && absolute_output_mode != null && absolute_output_mode.Tablet != null) {
             return new Vector2(absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX, absolute_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY);
         }
 
-        if (output_mode_type == OutputModeType.relative && relative_output_mode != null) {
+        if (output_mode_type == OutputModeType.relative && relative_output_mode != null && relative_output_mode.Tablet != null) {
             return new Vector2(relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxX, relative_output_mode.Tablet.Properties.Specifications.Digitizer.MaxY);
         }
 
@@ -71,15 +72,15 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
     }
 
     [Resolved]
-    public IDriver driver;
+    public IDriver? driver;
     private OutputModeType output_mode_type;
-    private AbsoluteOutputMode absolute_output_mode;
-    private RelativeOutputMode relative_output_mode;
+    private AbsoluteOutputMode? absolute_output_mode;
+    private RelativeOutputMode? relative_output_mode;
     private void try_resolve_output_mode()
     {
         if (driver is Driver drv)
         {
-            IOutputMode output = drv.InputDevices
+            IOutputMode? output = drv.InputDevices
                 .Where(dev => dev?.OutputMode?.Elements?.Contains(this) ?? false)
                 .Select(dev => dev?.OutputMode).FirstOrDefault();
 
@@ -97,8 +98,8 @@ public abstract class slimy_scylla_base : IPositionedPipelineElement<IDeviceRepo
         }
     }
 
-    public abstract event Action<IDeviceReport> Emit;
-    public abstract void Consume(IDeviceReport value);
+    public abstract event Action<IDeviceReport>? Emit;
+    public abstract void Consume(IDeviceReport? value);
     public abstract PipelinePosition Position { get; }
 }
 enum OutputModeType {

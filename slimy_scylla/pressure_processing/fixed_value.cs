@@ -13,8 +13,10 @@ public sealed class slimy_scylla_pressure_processing_fixed_value : slimy_scylla_
     private int tail_reports = 0;
 
     public override event Action<IDeviceReport>? Emit;
-    public override void Consume(IDeviceReport device_report)
+    public override void Consume(IDeviceReport? device_report)
     {
+        if (device_report == null) return;
+
         if (device_report is ITabletReport report) {
             if (report.Pressure <= pressure_deadzone_percent / 100 * get_max_pressure()) {
                 if (tail_reports > 0) {

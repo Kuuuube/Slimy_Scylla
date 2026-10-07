@@ -33,8 +33,10 @@ public sealed class slimy_scylla_tilt_smoothing_moving_average : slimy_scylla_ba
     }
 
     public override event Action<IDeviceReport>? Emit;
-    public override void Consume(IDeviceReport device_report)
+    public override void Consume(IDeviceReport? device_report)
     {
+        if (device_report == null) return;
+
         if (device_report is ITiltReport report) {
             report.Tilt = moving_average(report.Tilt);
             device_report = report;
