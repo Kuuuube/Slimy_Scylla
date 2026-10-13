@@ -15,9 +15,6 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
     private int tail_reports = 0;
 
     private Vector2 pulled_string(Vector2 position, Vector2 string_length_lines, Vector2 delta) {
-        // Don't use Math.Sign since it returns 0 for 0, we need to return 1 for 0
-        var delta_sign = new Vector2(delta.X < 0 ? -1 : 1, delta.Y < 0 ? -1 : 1);
-
         var m_slope = (position.Y - (position.Y + delta.Y)) / (position.X - (position.X + delta.X));
         var a_radius = string_length_lines.X;
         var b_radius = string_length_lines.Y;
@@ -92,7 +89,7 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
             Vector2 delta = new(report.Position.X - last_position.X, report.Position.Y - last_position.Y);
 
             //ignore reports that move less than string length px
-            if ((Math.Pow(delta.X - 0, 2) / Math.Pow(lppx.X * string_length, 2)) + (Math.Pow(delta.Y - 0, 2) / Math.Pow(lppx.Y * string_length, 2)) < 1) {
+            if ((Math.Pow(delta.X, 2) / Math.Pow(lppx.X * string_length, 2)) + (Math.Pow(delta.Y, 2) / Math.Pow(lppx.Y * string_length, 2)) < 1) {
                 report.Position = last_position;
                 if (never_intercept_pressure_on_off && ((last_pressure > 0 && report.Pressure == 0) || (last_pressure == 0 && report.Pressure > 0))) {
                     //let the pressure through
