@@ -15,25 +15,31 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
     private int tail_reports = 0;
 
     private Vector2 pulled_string(Vector2 position, Vector2 string_length_lines, Vector2 delta) {
-        Vector3 point_on_ellipse = new();
-        int step_count = 100;
-        Vector2 step_size = new(delta.X / step_count, delta.Y / step_count);
-        Vector2 try_point = new(position.X, position.Y);
-        for (int i = 0; i <= step_count; i++) {
-            try_point = new Vector2(try_point.X - step_size.X, try_point.Y - step_size.Y);
-            double test_point = (Math.Pow(try_point.X - position.X, 2) / Math.Pow(string_length_lines.X, 2)) + (Math.Pow(try_point.Y - position.Y, 2) / Math.Pow(string_length_lines.Y, 2));
-            if (Math.Abs(test_point - 1) < Math.Abs(point_on_ellipse.Z - 1)) {
-                point_on_ellipse = new Vector3(try_point.X, try_point.Y, (float)test_point);
-            } else {
-                //overshot
-                if (point_on_ellipse == new Vector3()) {
-                    point_on_ellipse = new Vector3(position, -1);
-                }
-                break;
-            }
-        }
+        // Don't use Math.Sign since it returns 0 for 0, we need to return 1 for 0
+        var delta_sign = new Vector2(delta.X < 0 ? -1 : 1, delta.Y < 0 ? -1 : 1);
 
-        position = new Vector2(point_on_ellipse.X, point_on_ellipse.Y);
+        var m_slope = (position.Y - (position.Y + delta.Y)) / (position.X - (position.X + delta.X));
+        var a_radius = string_length_lines.X;
+        var b_radius = string_length_lines.Y;
+
+        var a_radius2 = a_radius * a_radius;
+        var b_radius2 = b_radius * b_radius;
+        var m_slope2 = m_slope * m_slope;
+
+        // Calculate the length of the string at the exact angle of the cursor's movement.
+        // This will equal the intersection of the slope of the cursor from its last position `position` to its current position `position + delta` and the ellipse of the string.
+        //
+        // slope (in this case, b = 0): y = mx + b, ellipse formula: y = √(b ^ 2 * (1 - x ^ 2 / a ^ 2))
+        // slope: y = m_slope * x, ellipse: y = √(b_radius ^ 2 * (1 - x ^ 2 / a_radius ^ 2))
+        // intersection (set sides equal to eachother): m_slope * x = √(b_radius ^ 2 * (1 - x ^ 2 / a_radius ^ 2))
+        // intersection (rearranged to x): x = √(b_radius ^ 2 / (m_slope ^ 2 + b_radius ^ 2 / a_radius ^ 2))
+
+        var string_length_x = Math.Sqrt(b_radius2 / (m_slope2 + b_radius2 / a_radius2));
+        var string_length_y = m_slope * string_length_x;
+
+        // String length deltas must be absoluted then adjusted to the delta's sign since we're only solving for a semicircle intersection instead of a full circle (which makes the math more simple)
+        position = new Vector2(position.X - (float)Math.Abs(string_length_x) * Math.Sign(delta.X), position.Y - (float)Math.Abs(string_length_y) * Math.Sign(delta.Y));
+
         last_position = position;
         return position;
     }
