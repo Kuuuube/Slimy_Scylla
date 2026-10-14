@@ -3,6 +3,7 @@ using System.Numerics;
 using OpenTabletDriver.Plugin.Attributes;
 using OpenTabletDriver.Plugin.Tablet;
 using OpenTabletDriver.Plugin.Output;
+using OpenTabletDriver.Plugin;
 
 namespace slimy_scylla;
 
@@ -14,7 +15,14 @@ public sealed class slimy_scylla_position_smoothing_pulled_string : slimy_scylla
     private bool first_report = true;
     private int tail_reports = 0;
 
-    private Vector2 pulled_string(Vector2 position, Vector2 string_length_lines, Vector2 delta) {
+    internal Vector2 pulled_string(Vector2 position, Vector2 string_length_lines, Vector2 delta) {
+        if (float.IsNaN(delta.X) || float.IsNaN(delta.Y))
+        {
+            Log.Write("Slimy Scylla", "NaN delta caught, returning current exact position");
+            last_position = position;
+            return position;
+        }
+
         var m_slope = (position.Y - (position.Y + delta.Y)) / (position.X - (position.X + delta.X));
         var a_radius = string_length_lines.X;
         var b_radius = string_length_lines.Y;
