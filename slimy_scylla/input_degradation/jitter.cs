@@ -61,12 +61,15 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         pressure = (uint)((((float)pressure / (float)get_max_pressure()) + pressure_noise * (Math.Sin(ss / pressure_noise_period) + noise(ss / pressure_noise_period) * 2 - 1)) * (float)get_max_pressure());
         float position_noise = (float)(position_noise_amount * (Math.Sin(ss / position_noise_period) + noise(ss / position_noise_period) * 2 - 1));
         Vector2 normalized_position = position / get_max_coords();
-        position = new Vector2((position_px.X + ((normalized_position.X * 2 - 1) * position_noise)) * lppx.X, (position_px.Y + ((normalized_position.Y * 2 - 1) * position_noise)) * lppx.Y);
+        Vector2 new_position = new Vector2((position_px.X + ((normalized_position.X * 2 - 1) * position_noise)) * lppx.X, (position_px.Y + ((normalized_position.Y * 2 - 1) * position_noise)) * lppx.Y);
 
         if (pressure == 0) {
             pressure = 1;
         }
-        return new Vector3(position, pressure);
+        if (float.IsNaN(position.X) || float.IsNaN(position.Y)) {
+            return new Vector3(position, pressure);
+        }
+        return new Vector3(new_position, pressure);
     }
 
     public override event Action<IDeviceReport>? Emit;
@@ -77,7 +80,7 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         if (device_report is ITabletReport report) {
             if (report.Pressure == 0) {
                 seed = 0;
-                start_point = new Vector2();
+                start_point = new();
                 Emit?.Invoke(device_report);
                 return;
             }
