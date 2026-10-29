@@ -41,7 +41,7 @@ public sealed class slimy_scylla_pressure_processing_exponential_moving_average 
                 Emit?.Invoke(device_report);
                 return;
             }
-            
+
             report.Pressure = exponential_moving_average(report.Pressure);
             last_pos = report.Position;
             tail_reports = remove_tail_pressure_reports;

@@ -55,14 +55,14 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
         Vector2 position_px = new(position.X / lppx.X, position.Y / lppx.Y);
         Vector2 start_point_px = new(start_point.X / lppx.X, start_point.Y / lppx.Y);
         float distance_px = (float)Math.Sqrt((position_px.X - start_point_px.X) * (position_px.X - start_point_px.X) + (position_px.Y - start_point_px.Y) * (position_px.Y - start_point_px.Y));
-        
+
         float ss = distance_px + seed;
         float pressure_noise = mix(pressure_noise_amount, pressure_noise_amount * 1.5, (float)pressure / (float)get_max_pressure());
         pressure = (uint)((((float)pressure / (float)get_max_pressure()) + pressure_noise * (Math.Sin(ss / pressure_noise_period) + noise(ss / pressure_noise_period) * 2 - 1)) * (float)get_max_pressure());
         float position_noise = (float)(position_noise_amount * (Math.Sin(ss / position_noise_period) + noise(ss / position_noise_period) * 2 - 1));
         Vector2 normalized_position = position / get_max_coords();
         position = new Vector2((position_px.X + ((normalized_position.X * 2 - 1) * position_noise)) * lppx.X, (position_px.Y + ((normalized_position.Y * 2 - 1) * position_noise)) * lppx.Y);
-        
+
         if (pressure == 0) {
             pressure = 1;
         }
