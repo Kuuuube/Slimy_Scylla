@@ -16,7 +16,7 @@ The variability in pressure over time.
 
 The variability in position per report.
 
-**Position Noise Period:** Min: 0.00, Max: 10.00, Default: 15.00
+**Position Noise Period:** Min: 0.00, Max: 50.00, Default: 15.00
 
 The variability in position over time.
 

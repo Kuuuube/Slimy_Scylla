@@ -107,7 +107,7 @@ public sealed class slimy_scylla_input_degradation_jitter : slimy_scylla_base
     public float position_noise_amount { set; get; }
 
     [Property("Position Noise Period"), DefaultPropertyValue(15f), ToolTip
-        ("Position Noise Period: Min: 0.00, Max: 10.00, Default: 15.00\n" +
+        ("Position Noise Period: Min: 0.00, Max: 50.00, Default: 15.00\n" +
         "The variability in position over time.")]
     public float position_noise_period { set; get; }
 }
